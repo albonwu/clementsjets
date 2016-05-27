@@ -2,6 +2,7 @@
 $baseClr: rgb(236, 240, 241); //cloud
 $primaryClr: rgb(41, 128, 185); //darker blue
 $accentClr: rgb(52, 152, 219); //lighter blue
+$navHeight: 75px;
 
 /* IMPORTS */
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,100);
@@ -35,9 +36,23 @@ h1 {
 	font-family: 'Montserrat', sans-serif;
 }
 
+p {
+	font-family: 'Roboto', sans-serif;
+	font-size: 2rem;
+}
+
+.content-container {
+	margin-top: $navHeight;
+}
+
+.section-title {
+	padding: 15px 0 15px 0;
+	font-size: 5rem;
+}
+
 /* NAV */
 nav {
-	height: 75px;
+	height: $navHeight;
 	background-color: $primaryClr;
 	width: 100vw;
 	position: absolute;
@@ -67,12 +82,12 @@ nav {
 				display: inline-block;
 				color: white;
 				text-decoration: none;
-				line-height: 75px;
+				line-height: $navHeight;
 				white-space: nowrap;
 				transition: all 0.2s ease;
 			}
 
-			a:hover {
+			a:hover, a:active {
 				color: $accentClr;
 				background-color: $baseClr;
 			}
