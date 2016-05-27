@@ -1,0 +1,10 @@
+mixin menuItem(href, name)
+	li
+		a(href=href)= name
+nav
+	ul
+		+menuItem("home.html","HOME")
+		+menuItem("about.html","ABOUT")
+		+menuItem("resources.html","RESOURCES")
+		+menuItem("updates.html","UPDATES")
+		+menuItem("calendar.html", "CALENDAR")
