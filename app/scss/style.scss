@@ -1,0 +1,138 @@
+/* VARS */
+$baseClr: rgb(236, 240, 241); //cloud
+$primaryClr: rgb(41, 128, 185); //darker blue
+$accentClr: rgb(52, 152, 219); //lighter blue
+$navHeight: 75px;
+
+/* IMPORTS */
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100);
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+/* GENERAL STYLES */
+html {
+	height: 100%;
+	background-color: $baseClr;
+}
+
+body {
+	background-color: inherit;
+	overflow-x: hidden;
+}
+
+.center-both {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.flex-row {
+	flex-direction: row;
+}
+
+.flex-clmn {
+	flex-direction: column;
+}
+
+h1, h2, h3 {
+	font-family: 'Montserrat', sans-serif;
+}
+
+h2, h3 {
+	margin-top: 0; 
+}
+
+p {
+	font-family: 'Roboto', sans-serif;
+	font-size: 2rem;
+}
+
+.content-container {
+	margin-top: $navHeight;
+}
+
+.container {
+	width: 80%;
+}
+
+.title {
+	padding: 15px 0 15px 0;
+	font-size: 5rem;
+}
+
+.img-container {
+	width: 100%;
+	height: 200px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 50px;
+
+	img {
+		max-width: 100%;
+		height: auto;
+	}
+}
+
+/* NAV */
+nav {
+	height: $navHeight;
+	background-color: $primaryClr;
+	width: 100vw;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: flex;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 100;
+	font-size: 1.7rem;
+	z-index: 99;
+
+	ul {
+		list-style-type: none;
+		padding: 0;
+		margin: 0;
+		height: 100%;
+
+		li {
+			display: inline-block;
+			height: 100%;
+			text-align: center;
+			padding: 0 15px 0 15px;
+			transition: all 0.2s ease;
+
+			a, a:link, a:visited {
+				height: 100%;
+				width: 100%;
+				display: inline-block;
+				color: white;
+				text-decoration: none;
+				line-height: $navHeight;
+				white-space: nowrap;
+			}
+
+			&:hover{
+				a, a:link, a:visited {
+					color: $accentClr;
+				}
+				background-color: $baseClr;
+			}
+		}
+
+		#logo {
+			font-family: 'Montserrat', sans-serif;
+			font-size: 2rem;
+		}
+	}
+}
+
+/* LANDING */
+#landing-container {
+	text-align: center;
+	height: 100vh;
+	font-size: 3rem;
+}
+#landing-icon {
+	height: 100px;
+	width: auto;
+	margin: 30px;
+}

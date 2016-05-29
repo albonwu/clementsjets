@@ -1,0 +1,11 @@
+mixin menuItem(href, name)
+	li
+		a(href=href)= name
+nav
+	ul
+		li#logo
+			a(href="/") CLEMENTS JETS
+		+menuItem("/about.html","ABOUT")
+		+menuItem("/resources.html","RESOURCES")
+		+menuItem("/updates.html","UPDATES")
+		+menuItem("/calendar.html", "CALENDAR")
