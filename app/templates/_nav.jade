@@ -3,7 +3,8 @@ mixin menuItem(href, name)
 		a(href=href)= name
 nav
 	ul
-		+menuItem("/","HOME")
+		li#logo
+			a(href="/") CLEMENTS JETS
 		+menuItem("/about.html","ABOUT")
 		+menuItem("/resources.html","RESOURCES")
 		+menuItem("/updates.html","UPDATES")
