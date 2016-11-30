@@ -1,0 +1,9 @@
+extends _layout
+
+block content
+	.container.center-both.full-height
+		form(action="/signin", method="POST")
+			.form-group
+				label Enter password:
+				input(name="password", type="password").form-control
+			button.btn.btn-primary(type="submit") Enter

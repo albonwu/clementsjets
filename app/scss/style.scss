@@ -33,6 +33,10 @@ body {
 	flex-direction: column;
 }
 
+.full-height {
+	height: 100vh;
+}
+
 h1, h2, h3 {
 	font-family: 'Montserrat', sans-serif;
 }
@@ -168,4 +172,11 @@ nav {
 	p {
 		margin-top: 10px;
 	}
+}
+
+/* SIGNIN */
+
+form {
+	margin: 100px 0 0 0;
+	width: 50%;
 }

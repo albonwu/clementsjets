@@ -26,6 +26,9 @@
     "imagemin": "^4.0.0"
   },
   "dependencies": {
+    "bcryptjs": "^2.3.0",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
     "normalize.scss": "^0.1.0"
   }
 }

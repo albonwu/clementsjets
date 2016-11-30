@@ -10,6 +10,8 @@ var rename = require('gulp-rename');
 var imagemin = require('gulp-imagemin');
 var jsmin = require('gulp-jsmin');
 var uncss = require('gulp-uncss');
+var spawn = require('child_process').spawn,
+            node;
 
 gulp.task('templates', function() {
 
@@ -24,6 +26,24 @@ gulp.task('templates', function() {
         }))
         .pipe(gulp.dest('./'))
 });
+/**
+ * $ gulp server
+ * description: launch the server. If there's a server already running, kill it.
+ */
+gulp.task('server', function() {
+  if (node) node.kill()
+  node = spawn('node', ['index.js'], {stdio: 'inherit'})
+  node.on('close', function (code) {
+    if (code === 8) {
+      gulp.log('Error detected, waiting for changes...');
+    }
+  });
+})
+
+// clean up if an error goes unhandled.
+process.on('exit', function() {
+    if (node) node.kill()
+})
 
 gulp.task('imgs', function() {
     return gulp.src('./app/imgs/**/*')
@@ -64,14 +84,17 @@ gulp.task('js', function() {
         .pipe(reload({stream: true}));
 })
 
-gulp.task('watch', ['sass', 'templates', 'js', 'imgs', 'fonts'], function () {
+gulp.task('watch', ['sass', 'js', 'imgs', 'fonts'], function () {
 
-    browserSync({server: './', notify: false});
+    // browserSync({server: './', notify: false});
+    gulp.run('server');
 
+    gulp.watch(['./index.js'], function() {
+        gulp.run('server')
+    });
     gulp.watch('./app/imgs/**/*', ['imgs']);
     gulp.watch('./app/scss/*.scss', ['sass']);
-    gulp.watch('./app/templates/*.jade',      ['jade-watch']);
     gulp.watch('./app/js/*.js', ['js']);
 });
 
-gulp.task('build', ['sass', 'templates', 'js', 'imgs', 'fonts']);
+gulp.task('build', ['sass', 'js', 'imgs', 'fonts']);

@@ -1,1 +1,1 @@
-# chsjets
+# Website for Clements JETS
