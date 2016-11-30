@@ -14,6 +14,18 @@ module.exports = function(app) {
 
 	var hash = process.env.HASH || secret.hash;
 
+	var links;
+	if(process.env.DROPBOX){
+		links = {
+			"dropbox": process.env.DROPBOX,
+			"testLinkArchives": process.env.TEST_LINK_ARCHIVES,
+			"eventPrepSheet": process.env.EVENT_PREP_SHEET
+		}
+	}
+	else {
+		links = secret.links;
+	}
+
 	app.get('/', function (req, res) {
 	    res.render('index');
 	});
@@ -25,7 +37,8 @@ module.exports = function(app) {
 	app.post('/signin', function(req, res) {
 		if(bcrypt.compareSync(req.body.password, hash)) {
 			console.log("correct password"+" "+req.body.password);
-			res.render('resources');
+			console.log(links);
+			res.render('resources', links);
 		}
 		else {
 			console.log("wrong password");
