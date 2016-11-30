@@ -38,7 +38,7 @@ module.exports = function(app) {
 		if(bcrypt.compareSync(req.body.password, hash)) {
 			console.log("correct password"+" "+req.body.password);
 			console.log(links);
-			res.render('resources', links);
+			res.render('resources', {dropbox: links.dropbox, testLinkArchives: links.testLinkArchives, eventPrepSheet: links.eventPrepSheet});
 		}
 		else {
 			console.log("wrong password");

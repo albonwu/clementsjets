@@ -1,6 +1,6 @@
 mixin menuItem(href, name)
 	li
-		a(href=href)= name
+		a(href=href, target="_")= name
 
 extends _layout
 
@@ -15,9 +15,12 @@ block content
 					+menuItem("http://outreach.science.tamu.edu/scienceolympiad.php", "Texas Science Olympiad Website")
 					+menuItem("http://soinc.org/2016_div_c_events", "2016 National Science Olympiad Events")
 					+menuItem("http://www.scioly.org/phpBB3/index.php", "Science Olympiad Student Center")
-					+menuItem("#{links.dropbox}", "Clements Science Olympaid Dropbox")
-					+menuItem("#{links.testLinkArchives}", "Test Link Archives")
-					+menuItem("#{links.eventPrepSheet}", "Event Preparation Sheet")
+					li
+						a(href=dropbox, target="_") Clements Science Olympiad Dropbox
+					li
+						a(href=testLinkArchives, target="_") Test Link Archives
+					li
+						a(href=eventPrepSheet, target="_") Event Preparation Sheet
 			.col-md-4.col-sm-12
 				h2 Science Bowl
 				ul
