@@ -1,3 +1,5 @@
+extends _layout
+
 mixin post(title, date, src, content)
 	.post
 		h2=title
@@ -6,8 +8,6 @@ mixin post(title, date, src, content)
 			img(src=src)
 		p=content
 	hr
-
-extends _layout
 
 block content
 	.content-container.container

@@ -2,14 +2,13 @@ var gulp        = require('gulp');
 var browserSync = require('browser-sync');
 var sass        = require('gulp-sass');
 var reload      = browserSync.reload;
-var jade = require('gulp-jade');
+var pug = require('gulp-pug');
 var autoprefix = require('gulp-autoprefixer');
 var cssmin = require('gulp-cssmin');
 var filter = require('gulp-filter')
 var rename = require('gulp-rename');
 var imagemin = require('gulp-imagemin');
 var jsmin = require('gulp-jsmin');
-var uncss = require('gulp-uncss');
 var spawn = require('child_process').spawn,
             node;
 
@@ -17,8 +16,8 @@ gulp.task('templates', function() {
 
     var YOUR_LOCALS = {};
 
-    return gulp.src('./app/templates/**/*.jade')
-        .pipe(jade({
+    return gulp.src('./app/templates/**/*.pug')
+        .pipe(pug({
             locals: YOUR_LOCALS
         }))
         .pipe(filter(function (file) {
@@ -60,16 +59,12 @@ gulp.task('setWatch', function() {
     global.isWatching = true;
 });
 
-gulp.task('jade-watch', ['templates'], reload);
+gulp.task('pug-watch', ['templates'], reload);
 
 gulp.task('sass', function () {
     return gulp.src('./app/scss/*.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(autoprefix())
-        // .pipe(uncss({
-        //     html: ['index.html'],
-        //     ignore: ['*:hover','*:active','*:link','*:focus']
-        // }))
         .pipe(cssmin())
         .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest('./dist/css'))
