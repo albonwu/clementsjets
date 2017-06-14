@@ -58,4 +58,8 @@ module.exports = function(app) {
 	app.get('/calendar', function (req, res) {
 	    res.render('calendar');
 	});
+
+	app.get('/gene', function (req, res) {
+	    res.render('gene');
+	});
 }
