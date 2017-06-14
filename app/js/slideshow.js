@@ -3,7 +3,9 @@ var slide = 1;
 //define var directory; string on import: "path/to/image/folder/#.extension"
 
 function transition(forward) {
-	forward = forward || true;
+	if(forward == undefined) {
+		forward = true;
+	}
 	slide = (slide + (forward ? 0 : total - 2)) % total + 1;
 	$('#display').attr('src', directory.replace('#', slide));
 	$('#display').stop();
