@@ -3,6 +3,7 @@ var slide = 1;
 //define var directory; string on import: "path/to/image/folder/#.extension"
 
 function transition(forward) {
+	console.log(total);
 	if(forward == undefined) {
 		forward = true;
 	}
@@ -16,6 +17,7 @@ function transition(forward) {
 }
 
 $(document).ready(function() {
+	$('#display').attr('src', directory.replace('#', '1'));
 	$('#display').click(transition);
 	$('#right').click(transition);
 	$('#left').click(function() {transition(false)});

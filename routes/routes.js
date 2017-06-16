@@ -44,7 +44,6 @@ module.exports = function(app) {
 			console.log("wrong password");
 			res.redirect('/resources');
 		}
-		
 	});
 
 	app.get('/resources', function (req, res) {
@@ -61,5 +60,9 @@ module.exports = function(app) {
 
 	app.get('/gene', function (req, res) {
 	    res.render('gene');
+	});
+
+	app.get('/photos', function (req, res) {
+	    res.render('photos');
 	});
 }

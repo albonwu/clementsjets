@@ -1,20 +1,13 @@
 extends _layout
 
 block content
-	.content-container.container
-		link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
-		script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
-		script.
-			var directory = 'dist/imgs/gene/#.webp';
-			var total = 23;
-		script(src="dist/js/slideshow.min.js")
-		h1.title Geneeee Hsuuuu
-		h3 In honor of our great president, Gene Hsu.
-		div(class='slideshow')
-			div(id='left')
-				i(class='material-icons') arrow_back
-			img(id='display' src='dist/imgs/gene/1.webp')
-			div(id='right')
-				i(class='material-icons') arrow_forward
+	title Gene Hsu
+	h1.title(style='margin: 10% 10% 0 10%') Geneeee Hsuuuu
+	h3(style='margin: 2% 10% 0 10%') In honor of our great president, Gene Hsu.
+	script.
+		var directory = 'dist/imgs/gene/pic (#).webp';
+		var total = 23;
+	include _slideshow
+	.row(style='margin: 2% 10% 0 10%')
 		p.col-sm-12.col-md-10 All presidents deserve some sort of official recognition, and the former president of the Clements JETS (2013, 2014), Gene Hsu, is no exception. He was a wonderful president, leading the Clements Science Olympiad team to the first 1st place ranking at the State Science Olympiad Tournament in Clements history and to the National Science Olympiad Tournament in Dayton, Ohio. As a senior and second time presdient, Gene once again led the team to a repeat championship at the State Science Olympiad Tournament. This time, Clements placed 14th in the nation at Orlando, Florida, with medals in 6 events. Now that he has departed, it is up to the new and improved president, Queen Regina Chen, to continue Clements's streak of excellence.
 		p.col-sm-4.col-md-2 Gene, Gene, Gene, Gene, baby, baby, baby.

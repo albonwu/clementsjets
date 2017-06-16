@@ -1,0 +1,66 @@
+extends _layout
+
+block content
+	.content-container.container
+		link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
+		script.
+			totals = new Map();
+			totals.set('2017/SciolyNats', 20);
+			totals.set('2017/SciolyState', 161);
+			totals.set('2017/SciolyRegionals', 134);
+			totals.set('2017/SciolyMIT', 131);
+			totals.set('2017/SciolyHendrickson', 202);
+
+			$(document).ready(function() {
+				$('.album').click(function() {
+					$('html').append('<div id="focus" style="opacity:0;background-color:black;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:11"></div>');
+					$('html').append(
+						'<div class="slideshow" style="z-index:12;opacity:0;position:fixed;left:0;top:0;"><div id="left" style=""><i class="material-icons">arrow_back</i></div><div id="imgContainer"><img id="display"></div><div id="right"><i class="material-icons" style="">arrow_forward</i><i id="xout" class="material-icons" style="position:absolute;top:2vh;">close</i></div></div>'
+					);
+					directory = 'dist/imgs/photos/' + $(this).attr('src').split('#')[1] + '/pic (#).jpg';
+					total = totals.get($(this).attr('src').split('#')[1]);
+					$('html').append(
+						'<script src="dist/js/slideshow.min.js"><\/script>'
+					);
+					$('#focus').animate({opacity: 0.6});
+					$('.slideshow').animate({opacity: 1});
+					$('#xout').click(function() {
+						$('#focus').animate({
+							opacity: 0
+						}, 300, function() {
+							$(this).remove();
+						});
+						$('.slideshow').animate({
+							opacity: 0
+						}, 300, function() {
+							$(this).remove();
+						});
+					});
+				});
+			});
+		title JETS Photos
+		h1.title JETS Photo Gallery
+		h2 2017
+		.row
+			.col-md-4.col-sm-12
+				h3 Nationals
+				.img-container
+					img(src='dist/imgs/photos/thumbs/2017/Nationals.jpg#2017/SciolyNats').album
+			.col-md-4.col-sm-12
+				h3 State
+				.img-container
+					img(src='dist/imgs/photos/thumbs/2017/State.jpg#2017/SciolyState').album
+			.col-md-4.col-sm-12
+				h3 Regionals
+				.img-container
+					img(src='dist/imgs/photos/thumbs/2017/Regionals.jpg#2017/SciolyRegionals').album
+		.row
+			.col-md-4.col-sm-12
+				h3 MIT
+				.img-container
+					img(src='dist/imgs/photos/thumbs/2017/MIT.jpg#2017/SciolyMIT').album
+			.col-md-4.col-sm-12
+				h3 Hendrickson
+				.img-container
+					img(src='dist/imgs/photos/thumbs/2017/Hendrickson.jpg#2017/SciolyHendrickson').album
+		h2 I'm adding a bunch more soon!
