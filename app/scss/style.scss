@@ -287,3 +287,18 @@ form {
 		left: 90%;
 	}
 }
+
+.person-card {
+	margin-bottom: 50px;
+	color: inherit;
+	text-decoration: none;
+	&:hover {
+		text-decoration: none;
+		color: inherit;
+	}
+
+	img {
+		width: 100%;
+		margin-bottom: 20px;
+	}
+}
