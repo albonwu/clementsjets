@@ -62,7 +62,7 @@ module.exports = function(app) {
 	    res.render('gene');
 	});
 
-	app.get('/photos', function (req, res) {
-	    res.render('photos');
-	});
+	app.get('/ha-ha-ha-now-you-will-have-to-type-in-this-really-long-url-to-access-the-secret-game-of-four-dimensinoal-tic-tac-toe-ha-ha-ha', function(req, res) {
+		res.render('quartictactoe');
+	})
 }
