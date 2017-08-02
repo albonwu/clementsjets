@@ -64,5 +64,9 @@ module.exports = function(app) {
 
 	app.get('/ha-ha-ha-now-you-will-have-to-type-in-this-really-long-url-to-access-the-secret-game-of-four-dimensinoal-tic-tac-toe-ha-ha-ha', function(req, res) {
 		res.render('quartictactoe');
-	})
+	});
+
+	app.get('/invitational', function (req, res) {
+	    res.render('invitational');
+	});
 }

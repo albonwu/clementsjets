@@ -1,9 +1,9 @@
 var slide = 1;
+var autoScroll;
 //define var total; total number of pics on import
 //define var directory; string on import: "path/to/image/folder/#.extension"
 
 function transition(forward) {
-	console.log(total);
 	if(forward == undefined) {
 		forward = true;
 	}
@@ -18,7 +18,13 @@ function transition(forward) {
 
 $(document).ready(function() {
 	$('#display').attr('src', directory.replace('#', '1'));
+	autoScroll = setInterval(function() {
+		transition(true);
+	}, 8000);
 	$('#display').click(transition);
 	$('#right').click(transition);
-	$('#left').click(function() {transition(false)});
+	$('#left').click(function() {
+		transition(false);
+		clearInterval(autoScroll);
+	});
 });

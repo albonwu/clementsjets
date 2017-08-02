@@ -1,0 +1,48 @@
+extends _layout
+
+block content
+	style(type='text/css').
+		body {
+			height: 100%;
+			background-image: url(https://www.fortbendisd.com/cms/lib/TX01917858/Centricity/ModuleInstance/28091/IMG_3059.jpg);
+			background-color: rgb(175, 175, 175);
+			background-blend-mode:screen;
+		}
+	script.
+		function submit() {
+			$.post('http://ei1.xyz/chsinvite/signup.php?teamname=', {
+				teamname: $('#teamname').val()
+			});
+		}
+
+		function check() {
+			var list = null;
+			$.ajax({
+				url: 'http://ei1.xyz/chsinvite/teams.txt',
+				type: 'get',
+				success: function(data) {
+					list = data;
+				}
+			})
+			return list;
+		}
+
+		$(document).ready(function() {
+			$('#teamlist').val(check());
+			setInterval(function() {
+				$('#teamlist').val(check());
+			}, 30000);
+		});
+	.content-container.container
+		title CHS 2017 Invitational
+		h1.title CLEMENTS INVITATIONAL 2017
+		p
+			| Welcome!
+			br
+			| This is the official page regarding the upcoming 2017 Clements Invitational tournament on December 16th at #[a(href='https://www.google.com/maps/place/Clements+High+School/@29.5743129,-95.6355284,17z/data=!3m1!4b1!4m5!3m4!1s0x8640e410a9b5941f:0x9b8073186dff22ae!8m2!3d29.5743129!4d-95.6333397?hl=en') Clements High School].
+			br
+		p Fill out the form below to sign your team up!
+		input(type='text' placeholder='Team Name' id='teamname')
+		input(type='button' value='Submit' onClick='submit()')
+		p Heres a list of teams that signed up:
+		p(id='teamlist')
