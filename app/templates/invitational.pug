@@ -8,30 +8,29 @@ block content
 			background-color: rgb(175, 175, 175);
 			background-blend-mode:screen;
 		}
+
+		#teamlist {
+			white-space: pre-line;
+			color: black;
+		}
 	script.
 		function submit() {
-			$.post('http://gaminged.com/ei1/chsinvite/signup.php?teamname=', {
-				teamname: $('#teamname').val()
-			});
+			$.post('http://gaminged.com/ei1/chsinvite/signup.php?teamName=' + $('#teamname').val());
+			location.reload();
 		}
 
 		function check() {
-			var list = null;
-			$.ajax({
-				url: 'http://gaminged.com/ei1/chsinvite/teams.txt',
-				type: 'get',
-				success: function(data) {
-					list = data;
-				}
-			})
-			return list;
+			var list = '';
+			$.get('http://gaminged.com/ei1/chsinvite/teams.txt', function(data) {
+				$('#teamlist').text(data);
+			});
 		}
 
 		$(document).ready(function() {
-			$('#teamlist').val(check());
+			check();
 			setInterval(function() {
-				$('#teamlist').val(check());
-			}, 30000);
+				check();
+			}, 10000);
 		});
 	.content-container.container
 		title CHS 2017 Invitational
