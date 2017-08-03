@@ -10,7 +10,7 @@ block content
 		}
 	script.
 		function submit() {
-			$.post('http://ei1.xyz/chsinvite/signup.php?teamname=', {
+			$.post('http://gaminged.com/ei1/chsinvite/signup.php?teamname=', {
 				teamname: $('#teamname').val()
 			});
 		}
@@ -18,7 +18,7 @@ block content
 		function check() {
 			var list = null;
 			$.ajax({
-				url: 'http://ei1.xyz/chsinvite/teams.txt',
+				url: 'http://gaminged.com/ei1/chsinvite/teams.txt',
 				type: 'get',
 				success: function(data) {
 					list = data;
