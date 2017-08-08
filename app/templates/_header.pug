@@ -5,3 +5,23 @@ head
 	link(rel='stylesheet', href='dist/css/normalize.min.css')
 	link(rel='stylesheet', href='dist/css/style.min.css')
 	script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+	script.
+		function userAuth(callback) {
+			if(localStorage.getItem('user') != null) {
+				$.ajax({
+					url: "http://gaminged.com/ei1/jets/net/validate.php?usingemail=0&user="
+					+ localStorage.getItem('user')
+					+ '&pass='
+					+ localStorage.getItem('pass'),
+					success: function(result) {
+						if(parseInt(result) != NaN) {
+							callback(parseInt(result));
+						} else {
+							alert('Uh oh, I think a servo fried. Try again later.');
+						}
+					}
+				});
+			} else {
+				callback(-1);
+			}
+		}

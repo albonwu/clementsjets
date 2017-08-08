@@ -21,7 +21,7 @@ block content
 
 		function check() {
 			var list = '';
-			$.get('http://gaminged.com/ei1/chsinvite/teams.txt', function(data) {
+			$.get('http://gaminged.com/ei1/chsinvite/teams.txt?refresh=' + Math.random(), function(data) {
 				$('#teamlist').text(data);
 			});
 		}

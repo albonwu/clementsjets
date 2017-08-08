@@ -8,6 +8,12 @@ block content
 			$(document).ready(function() {
 				$('#landing-icon').click(function() {
 					clicks++;
+					if(clicks == 100) {
+						console.log('yoy');
+					}
+					if(clicks == 101) {
+						console.log('yike');
+					}
 				});
 				if (window.addEventListener) {
 					var kkeys = [], konami = "38,38,40,40,37,39,37,39,66,65,13";

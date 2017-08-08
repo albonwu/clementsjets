@@ -69,4 +69,16 @@ module.exports = function(app) {
 	app.get('/invitational', function (req, res) {
 	    res.render('invitational');
 	});
+
+	app.get('/login', function(req, res) {
+		res.render('login');
+	});
+
+	app.get('/logup', function(req, res) {
+		res.render('logup');
+	});
+
+	app.get('/terms', function(req, res) {
+		res.render('terms');
+	});
 }

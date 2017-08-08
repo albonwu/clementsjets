@@ -1,6 +1,33 @@
 mixin menuItem(href, name)
 	li
 		a(href=href)= name
+script.
+	$(document).ready(function() {
+		userAuth(function(auth) {
+			if(auth == -1) {
+				localStorage.removeItem('user');
+				localStorage.removeItem('pass');
+				localStorage.removeItem('mail');
+				localStorage.removeItem('name');
+				localStorage.removeItem('last');
+			}
+			if(localStorage.getItem('user') == null) {
+				$('#login').html('<a href="login">LOG IN</a>');
+			} else {
+				$('#login').html('<a href="">HI, ' + localStorage.getItem('name').toUpperCase() + '!</a>');
+				$('#login').click(function() {
+					if(window.confirm('Do you want to log out?')) {
+						localStorage.removeItem('user');
+						localStorage.removeItem('pass');
+						localStorage.removeItem('mail');
+						localStorage.removeItem('name');
+						localStorage.removeItem('last');
+						window.location.reload();
+					}
+				});
+			}
+		});
+	});
 nav
 	ul
 		li#logo
@@ -10,3 +37,4 @@ nav
 		+menuItem("/updates","UPDATES")
 		+menuItem("/calendar", "CALENDAR")
 		+menuItem("/invitational", "INVITATIONAL")
+		li#login

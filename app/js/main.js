@@ -15,3 +15,15 @@ function shiftIcon() {
 }
 shiftIcon();
 setInterval(shiftIcon, 1500);
+var mclicks = 0
+$('#landing-icon').click(function() {
+	mclicks++;
+	if(mclicks == 150) {
+		paused = true
+		$('#landing-icon').attr('src','./dist/imgs/landing-icons/mudkip.png');
+		$('#landing-icon').css({"opacity":0});
+		$('#landing-icon').animate({
+			opacity: 1,
+		}, 500);
+	}
+});

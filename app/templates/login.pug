@@ -1,0 +1,79 @@
+extends _layout
+
+block content
+	title Log In
+	style.
+		body {
+			margin: 0;
+		}
+		#holder {
+			position: absolute;
+			width: 50vh;
+			height: 50vh;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			padding: 1%;
+		}
+		.field {
+			width: 100%;
+			height: 10%;
+			font-size: 2.5vh;
+		}
+		.btn {
+			width: 50%;
+			height: 10%;
+			margin-top: 5%;
+			margin-bottom: 5%;
+		}
+		a {
+			color: inherit;
+		}
+		#error {
+			color: red;
+			white-space: pre;
+		}
+	script.
+		$(document).ready(function() {
+			function submit() {
+				localStorage.setItem('user', $('#user').val());
+				localStorage.setItem('pass', $('#pass').val());
+				userAuth(function(auth) {
+					if(auth == -1) {
+						localStorage.removeItem('user');
+						localStorage.removeItem('pass');
+						$('#error').text('I don\'t think it worked.');
+					} else {
+						$.ajax({
+							url: 'http://gaminged.com/ei1/jets/net/getinfo.php' +
+							'?user=' + localStorage.getItem('user') +
+							'&pass=' + localStorage.getItem('pass'),
+							success: function(result) {
+								localStorage.setItem('mail', result.split(',')[0]);
+								localStorage.setItem('name', result.split(',')[1]);
+								localStorage.setItem('last', result.split(',')[2]);
+								window.location.href = '../';
+							}
+						});
+					}
+				});
+			}
+			$('#submit').click(submit);
+			$(document).keypress(function(e) {
+				if(e.which == 13) {
+					submit();
+				}
+			})
+		});
+	.content-container.container
+		div#holder
+			h1(style='text-align:center') Log In
+			h4 Username
+			input(type='text').field.form-control#user
+			h4 Password
+			input(type='password').field.form-control#pass
+			p(style='font-size: 2vh;')#error
+			a(href='logup')
+				input(type='button' value='Create Account').btn.btn-secondary
+			input(type='button' value='Log In').btn.btn-primary#submit
+			p(style='font-size: 2vh;') Forgot your password? Contact jets.chs@gmail.com to reset.
