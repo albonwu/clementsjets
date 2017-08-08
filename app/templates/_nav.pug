@@ -27,9 +27,42 @@ script.
 				});
 			}
 		});
+
+		var menuClick = 0;
+		var menuOpen = false;
+
+		if($(window).width() > 911) {
+			$('#hamburger').remove();
+			$('#mobilemenu').remove();
+		} else {
+			$('#actionlist').css('width', '0px');
+			$('#actionlist').appendTo($('#mobilemenu'));
+			$(document).click(function() {
+				menuClick--;
+				if(menuClick != 0) {
+					$('#mobilemenu').animate({left: '-20rem'});
+					menuClick = 0;
+					menuOpen = false;
+				}
+			});
+			$('#hamburger').click(function() {
+				menuClick++;
+				if(!menuOpen) {
+					menuOpen = true;
+					$('#mobilemenu').animate({left: 0});
+				} else {
+					menuOpen = false;
+					$('#mobilemenu').animate({left: '-20rem'});
+					menuClick = 0;
+				}
+			});
+		}
 	});
 nav
-	ul
+	div#hamburger
+		i(class="material-icons" style="color: white;font-size: 4rem;line-height:75px") menu
+	div#mobilemenu
+	ul#actionlist
 		li#logo
 			a(href="/") CLEMENTS JETS
 		+menuItem("/about","ABOUT")
@@ -37,4 +70,4 @@ nav
 		+menuItem("/updates","UPDATES")
 		+menuItem("/calendar", "CALENDAR")
 		+menuItem("/invitational", "INVITATIONAL")
-		li#login
+	div#login

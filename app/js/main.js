@@ -15,6 +15,9 @@ function shiftIcon() {
 }
 shiftIcon();
 setInterval(shiftIcon, 1500);
+if($(window).height() < 350 || $(window).width() < 350) {
+	$('#landing-icon').remove();
+}
 var mclicks = 0
 $('#landing-icon').click(function() {
 	mclicks++;
