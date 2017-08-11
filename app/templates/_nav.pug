@@ -9,8 +9,9 @@ script.
 				logOut();
 			}
 			if(localStorage.getItem('user') == null) {
-				if(window.location.href.split('/')[3].slice(0, 5) != 'login') {
-					$('#login').html('<a href="login#' + window.location.href.split('/')[3] + '">LOG IN</a>');
+				var url = window.location.href.split('/')[3];
+				if(url.slice(0, 5) != 'login') {
+					$('#login').html('<a href="login' + (url != '' ? '#' + url : '') + '">LOG IN</a>');
 				}
 			} else {
 				$('#login').html('<a href="">HI, ' + localStorage.getItem('name').toUpperCase() + '!</a>');
