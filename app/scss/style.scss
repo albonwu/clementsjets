@@ -5,7 +5,7 @@ $accentClr: rgb(52, 152, 219); //lighter blue
 $navHeight: 75px;
 
 /* IMPORTS */
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,100);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300);
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
 
 /* GENERAL STYLES */
@@ -181,6 +181,7 @@ nav {
 			height: $navHeight;
 			width: 20rem;
 			text-align: left;
+			font-weight: 300;
 		}
 	}
 
