@@ -3,31 +3,27 @@ mixin menuItem(href, name)
 		a(href=href)= name
 script.
 	$(document).ready(function() {
+		/////////////////////////////AUTHENTICATION/////////////////////////////
 		userAuth(function(auth) {
 			if(auth == -1) {
-				localStorage.removeItem('user');
-				localStorage.removeItem('pass');
-				localStorage.removeItem('mail');
-				localStorage.removeItem('name');
-				localStorage.removeItem('last');
+				logOut();
 			}
 			if(localStorage.getItem('user') == null) {
-				$('#login').html('<a href="login">LOG IN</a>');
+				if(window.location.href.split('/')[3].slice(0, 5) != 'login') {
+					$('#login').html('<a href="login#' + window.location.href.split('/')[3] + '">LOG IN</a>');
+				}
 			} else {
 				$('#login').html('<a href="">HI, ' + localStorage.getItem('name').toUpperCase() + '!</a>');
 				$('#login').click(function() {
 					if(window.confirm('Do you want to log out?')) {
-						localStorage.removeItem('user');
-						localStorage.removeItem('pass');
-						localStorage.removeItem('mail');
-						localStorage.removeItem('name');
-						localStorage.removeItem('last');
+						logOut();
 						window.location.reload();
 					}
 				});
 			}
 		});
 
+		//////////////////////////MOBILE FRIENDLY MENU//////////////////////////
 		var menuClick = 0;
 		var menuOpen = false;
 

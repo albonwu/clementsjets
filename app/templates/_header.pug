@@ -26,3 +26,11 @@ head
 				callback(-1);
 			}
 		}
+
+		function logOut() {
+			localStorage.removeItem('user');
+			localStorage.removeItem('pass');
+			localStorage.removeItem('mail');
+			localStorage.removeItem('name');
+			localStorage.removeItem('last');
+		}

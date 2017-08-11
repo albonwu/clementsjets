@@ -52,7 +52,14 @@ block content
 								localStorage.setItem('mail', result.split(',')[0]);
 								localStorage.setItem('name', result.split(',')[1]);
 								localStorage.setItem('last', result.split(',')[2]);
-								window.location.href = '../';
+								if(
+									window.location.href.indexOf('#') == -1 ||
+									window.location.href.split('#')[1].slice(0, 5) == 'logup'
+								) {
+									window.location.href = '../';
+								} else {
+									window.location.href = window.location.href.split('#')[1];
+								}
 							}
 						});
 					}

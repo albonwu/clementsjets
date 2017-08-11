@@ -5,7 +5,7 @@ block content
 		body {
 			height: 100%;
 			background-image: url(https://www.fortbendisd.com/cms/lib/TX01917858/Centricity/ModuleInstance/28091/IMG_3059.jpg);
-			background-color: rgb(175, 175, 175);
+			background-color: rgb(200, 200, 200);
 			background-blend-mode:screen;
 		}
 
@@ -14,6 +14,7 @@ block content
 			color: black;
 		}
 	script.
+		//////////////////////TEAMLIST READING AND WRITING//////////////////////
 		function submit() {
 			$.post('http://gaminged.com/ei1/chsinvite/signup.php?teamName=' + $('#teamname').val());
 			location.reload();
@@ -32,6 +33,22 @@ block content
 				check();
 			}, 10000);
 		});
+
+		/////////////////////////GIVE OFFICER PRIVLAGES/////////////////////////
+		userAuth(function(auth) {
+			if(auth >= 3) {
+				$('#officer-add-teams').append(
+					'<p>' +
+					localStorage.getItem('name') +
+					`, you're an officer, so if a team says they're going, add them here:</p>
+						<input type='text' class='form-control' style='width: 25vw;display:inline' placeholder='Team Name' id='teamname'>
+						<input type='button' class='btn btn-primary' value='Submit' onClick='submit()'>
+					`
+				);
+			} else {
+				$('#officer-add-teams').remove();
+			}
+		});
 	.content-container.container
 		title CHS 2017 Invitational
 		h1.title CLEMENTS INVITATIONAL 2017
@@ -40,8 +57,6 @@ block content
 			br
 			| This is the official page regarding the upcoming 2017 Clements Invitational tournament on December 16th at #[a(href='https://www.google.com/maps/place/Clements+High+School/@29.5743129,-95.6355284,17z/data=!3m1!4b1!4m5!3m4!1s0x8640e410a9b5941f:0x9b8073186dff22ae!8m2!3d29.5743129!4d-95.6333397?hl=en') Clements High School].
 			br
-		p Fill out the form below to sign your team up!
-		input(type='text' placeholder='Team Name' id='teamname')
-		input(type='button' value='Submit' onClick='submit()')
+		div#officer-add-teams
 		p Heres a list of teams that signed up:
 		p(id='teamlist')
