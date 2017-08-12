@@ -4,8 +4,16 @@ block content
 		title Clements JETS
 		img#landing-icon(src="dist/imgs/landing-icons/dna-structure.svg")
 		script.
+			
+
 			var clicks = 0;
 			$(document).ready(function() {
+				/////////////////////WELCOME TO NEW WEBSITE/////////////////////
+				if(window.location.href.split('#')[1] == 'new') {
+					$('#welcome').html('As of 2017, this is the new Clements JETS website!<br><a href="http://clementsjets.org">clementsjets.org</a><br><br>Or click <a href="http://jetschs.wixsite.com/clements-jets-old">here</a> to go back to the old site.');
+				}
+
+				//////////////////////////EASTER EGGS//////////////////////////
 				$('#landing-icon').click(function() {
 					clicks++;
 					if(clicks == 100) {
@@ -15,6 +23,7 @@ block content
 						console.log('yike');
 					}
 				});
+
 				if (window.addEventListener) {
 					var kkeys = [], konami = "38,38,40,40,37,39,37,39,66,65,13";
 					window.addEventListener("keydown", function(e){
@@ -29,4 +38,4 @@ block content
 				}
 			});
 		h1 CLEMENTS JETS
-		h3 Junior Engineering & Technical S#[a(href='gene' style='color:inherit;text-decoration:none;cursor:text') o]ciety
+		h3#welcome Junior Engineering & Technical S#[a(href='gene' style='color:inherit;text-decoration:none;cursor:text') o]ciety

@@ -26,14 +26,6 @@ module.exports = function(app) {
 		links = secret.links;
 	}
 
-	app.get('/', function (req, res) {
-	    res.render('index');
-	});
-
-	app.get('/about', function (req, res) {
-	    res.render('about');
-	});
-
 	app.post('/signin', function(req, res) {
 		if(bcrypt.compareSync(req.body.password, hash)) {
 			console.log("correct password"+" "+req.body.password);
@@ -46,39 +38,36 @@ module.exports = function(app) {
 		}
 	});
 
-	app.get('/resources', function (req, res) {
-    	res.render('signin');
-	});
-
-	app.get('/updates', function (req, res) {
-	    res.render('updates');
-	});
-
-	app.get('/calendar', function (req, res) {
-	    res.render('calendar');
-	});
-
-	app.get('/gene', function (req, res) {
-	    res.render('gene');
-	});
-
 	app.get('/ha-ha-ha-now-you-will-have-to-type-in-this-really-long-url-to-access-the-secret-game-of-four-dimensinoal-tic-tac-toe-ha-ha-ha', function(req, res) {
 		res.render('quartictactoe');
 	});
 
-	app.get('/invitational', function (req, res) {
-	    res.render('invitational');
-	});
-
-	app.get('/login', function(req, res) {
-		res.render('login');
-	});
-
-	app.get('/logup', function(req, res) {
-		res.render('logup');
-	});
-
-	app.get('/terms', function(req, res) {
-		res.render('terms');
+	standardLinks = [
+		['', 'index'],
+		'about',
+		['resources', 'signin'],
+		'updates',
+		'calendar',
+		'gene',
+		[
+			'/ha-ha-ha-now-you-will-have-to-type-in-this-really-long-url-to-access-the-secret-game-of-four-dimensinoal-tic-tac-toe-ha-ha-ha',
+			'quartictactoe'
+		],
+		'invitational',
+		'login',
+		'logup',
+		'terms',
+		'updates-old',
+	];
+	standardLinks.forEach(function(url) {
+		if(typeof(url) == 'string') {
+			app.get('/' + url, function(req, res) {
+				res.render(url);
+			});
+		} else {
+			app.get('/' + url[0], function(req, res) {
+				res.render(url[1]);
+			});
+		}
 	});
 }
