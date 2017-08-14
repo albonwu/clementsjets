@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var routes = require('./routes/routes');
+var favicon = require('serve-favicon');
 routes(app);
 
 app.set('port', (process.env.PORT || 3000));
@@ -10,6 +11,8 @@ app.set('views', 'app/templates');
 app.set('view engine', 'pug');
 
 app.use('/dist', express.static(__dirname + '/dist'));
+
+app.use(favicon(__dirname + '/favicon.ico'));
 
 app.use(function(req, res, next) {
 	res.status(400);
