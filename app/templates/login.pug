@@ -71,10 +71,13 @@ block content
 					submit();
 				}
 			});
+			if(window.location.href.split('#')[1] == 'resources') {
+				$('#login-title').text('Log in to view this page')
+			}
 		});
 	.content-container.container
 		div#holder
-			h1(style='text-align:center') Log In
+			h1(style='text-align:center')#login-title Log In
 			h4 Username
 			input(type='text').field.form-control#user
 			h4 Password
