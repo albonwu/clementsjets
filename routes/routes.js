@@ -26,26 +26,10 @@ module.exports = function(app) {
 		links = secret.links;
 	}
 
-	app.post('/signin', function(req, res) {
-		if(bcrypt.compareSync(req.body.password, hash)) {
-			console.log("correct password"+" "+req.body.password);
-			console.log(links);
-			res.render('resources', {dropbox: links.dropbox, testLinkArchives: links.testLinkArchives, eventPrepSheet: links.eventPrepSheet});
-		}
-		else {
-			console.log("wrong password");
-			res.redirect('/resources');
-		}
-	});
-
-	app.get('/ha-ha-ha-now-you-will-have-to-type-in-this-really-long-url-to-access-the-secret-game-of-four-dimensinoal-tic-tac-toe-ha-ha-ha', function(req, res) {
-		res.render('quartictactoe');
-	});
-
 	standardLinks = [
 		['', 'index'],
 		'about',
-		['resources', 'signin'],
+		'resources',
 		'updates',
 		'calendar',
 		'gene',
