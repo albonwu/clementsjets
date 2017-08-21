@@ -2,11 +2,17 @@ extends _layout
 
 block content
 	style(type='text/css').
-		body {
-			/*height: 100%;
-			background-image: url(https://www.fortbendisd.com/cms/lib/TX01917858/Centricity/ModuleInstance/28091/IMG_3059.jpg);
-			background-color: rgb(200, 200, 200);
-			background-blend-mode:screen;*/
+		@media only screen and (orientation : landscape) {
+			body {
+				background-image: url(https://www.fortbendisd.com/cms/lib/TX01917858/Centricity/ModuleInstance/28091/IMG_3059.jpg);
+				background-color: rgb(175, 175, 175);
+				background-blend-mode: screen;
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: cover;
+				background-attachment: fixed;
+				margin-bottom: 0;
+			}
 		}
 
 		#teamlist {
