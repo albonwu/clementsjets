@@ -5,7 +5,7 @@ block content
 		@media only screen and (orientation : landscape) {
 			body {
 				background-image: url(https://www.fortbendisd.com/cms/lib/TX01917858/Centricity/ModuleInstance/28091/IMG_3059.jpg);
-				background-color: rgb(175, 175, 175);
+				background-color: rgb(200, 200, 200);
 				background-blend-mode: screen;
 				background-position: center;
 				background-repeat: no-repeat;
@@ -42,7 +42,7 @@ block content
 
 			if($(window).width() < 900) {
 				$('.form-control').css('width', '70%');
-				$('.btn').css('width', '30%');
+				$('.btn').css('width', 'calc(30% - 0.5rem)');
 			}
 
 			//mailing list enter button xd
@@ -104,7 +104,7 @@ block content
 			| #[p(style='font-size:1.25rem;') If you can't attend on December 16, you may retrospectively purchase a copy of the tests we used for $75.]
 		p If you'd like to be added to our email list for future updates, enter your email below:
 		input(type='text' class='form-control' style='width: 25vw;display:inline' placeholder='Email Address' id='mailname')
-		input(type='button' class='btn btn-primary' value='Submit' onClick='mailsubmit()')
+		input(type='button' class='btn btn-primary mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent' value='SUBMIT' onClick='mailsubmit()').
 		p(id='mailerror' style='color: red; font-size: 1.5rem')
 		div#officer-add-teams
 		br
