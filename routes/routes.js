@@ -34,7 +34,7 @@ module.exports = function(app) {
 		'calendar',
 		'gene',
 		[
-			'/ha-ha-ha-now-you-will-have-to-type-in-this-really-long-url-to-access-the-secret-game-of-four-dimensinoal-tic-tac-toe-ha-ha-ha',
+			'ha-ha-ha-now-you-will-have-to-type-in-this-really-long-url-to-access-the-secret-game-of-four-dimensinoal-tic-tac-toe-ha-ha-ha',
 			'quartictactoe'
 		],
 		'invitational',
