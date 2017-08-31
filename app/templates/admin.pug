@@ -42,9 +42,7 @@ block content
 							alert('The four access levels are as follows:\nUnverified User: has the same access as someone who is not logged in.\nVerified User: can participate in public chats but cannot access JETS resources.\nJETS Member: may access JETS resources but may not modify information regarding users other than themselves\nJETS Officer: able to modify website and user data.');
 							var input = prompt('Please type the following: I, FIRSTNAME LASTNAME, swear to use my authority with good intent and reasonable caution. My account password is PASSWORD and I wish to change the access level of SUBJECT USERNAME to the level of NEW ACCESS LEVEL').replace(/\,/g, '').replace(/\./g, '').toLowerCase();
 							if(input.split(' and i wish to change the access level of')[0] == 'i ' + localStorage.getItem('name').toLowerCase() + ' ' + localStorage.getItem('last').toLowerCase() + ' swear to use my authority with good intent and reasonable caution my account password is ' + localStorage.getItem('pass')) {
-								var newauth = ['unverified user', 'verified user', 'jets member, jets officer'].indexOf(input.split('to the level of ')[1]);
-								console.log(input.split('to the level of ')[1]);
-								console.log(['unverified user', 'verified user', 'jets member', 'jets officer'].indexOf(input.split('to the level of ')[1]));
+								var newauth = ['unverified user', 'verified user', 'jets member', 'jets officer'].indexOf(input.split('to the level of ')[1]);
 								var subject = input.split('and i wish to change the access level of ')[1].split(' to the level of')[0];
 								if(newauth == -1) {
 									alert('Please enter the name of a valid access level.');
