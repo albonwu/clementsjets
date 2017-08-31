@@ -63,7 +63,7 @@ block content
 						<a href='http://ei1.xyz/chsinvite/emails.txt'>ei1.xyz/chsinvite/emails.txt</a><br>
 						And if a new team confirms that they're going, add them here:</p>
 						<input type='text' class='form-control' style='width: 25vw;display:inline' placeholder='Team Name' id='teamname'>
-						<input type='button' class='btn btn-primary' value='Submit' onClick='submit()'></div>
+						<input type='button' class='btn btn-primary' value='SUBMIT' onClick='submit()'></div>
 					`
 				);
 			} else {
@@ -94,13 +94,16 @@ block content
 	.content-container.container
 		title CHS 2017 Invitational
 		h1.title CLEMENTS INVITATIONAL 2017
-		p(style='display:inline')
+		p(style='display:inline; font-size: 2rem')
 			| Welcome!
 			br
-			| This is the official page regarding the upcoming 2017 Clements Invitational tournament on December 16th at #[a(href='https://www.google.com/maps/place/Clements+High+School/@29.5743129,-95.6355284,17z/data=!3m1!4b1!4m5!3m4!1s0x8640e410a9b5941f:0x9b8073186dff22ae!8m2!3d29.5743129!4d-95.6333397?hl=en') Clements High School].
+			p(style='font-size:2rem;display:inline') This is the official page regarding the upcoming 2017 Clements Invitational tournament on 
+			p(style='font-size:2.5rem;display:inline') December 16th 
+			p(style='font-size:2rem;display:inline') at #[a(href='https://www.google.com/maps/place/Clements+High+School/@29.5743129,-95.6355284,17z/data=!3m1!4b1!4m5!3m4!1s0x8640e410a9b5941f:0x9b8073186dff22ae!8m2!3d29.5743129!4d-95.6333397?hl=en') Clements High School].
 			br
-			| We #[i tentatively] are pricing admission is #[p(style='font-size:2.5rem;display:inline') $120]. 
-			br
+			p(style='font-size: 2rem;display:inline') We are pricing admission at 
+			p(style='font-size:2.5rem;display:inline') $120. 
+			p(style='font-size: 1.75rem;display:inline') The deadline for admissions is November 5th.
 			| #[p(style='font-size:1.25rem;') If you can't attend on December 16, you may retrospectively purchase a copy of the tests we used for $75.]
 		p If you'd like to be added to our email list for future updates and registration information, enter your email below:
 		input(type='text' class='form-control' style='width: 25vw;display:inline' placeholder='Email Address' id='mailname')

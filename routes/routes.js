@@ -42,6 +42,7 @@ module.exports = function(app) {
 		'logup',
 		'terms',
 		'updates-old',
+		'admin',
 	];
 	standardLinks.forEach(function(url) {
 		if(typeof(url) == 'string') {
