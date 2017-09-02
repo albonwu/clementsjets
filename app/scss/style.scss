@@ -61,8 +61,16 @@ em {
 	margin-top: $navHeight;
 }
 
-.container {
-	width: 80%;
+@media only screen and (orientation : landscape) {
+	.container {
+		width: 65%
+	}
+}
+
+@media only screen and (orientation : portrait) {
+	.container {
+		width: 90%
+	}
 }
 
 .title {

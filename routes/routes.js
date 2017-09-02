@@ -29,8 +29,8 @@ module.exports = function(app) {
 	standardLinks = [
 		['', 'index'],
 		'about',
-		'resources',
 		'updates',
+		'resources',
 		'calendar',
 		'gene',
 		[
