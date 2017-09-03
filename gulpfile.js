@@ -17,9 +17,7 @@ gulp.task('templates', function() {
     var YOUR_LOCALS = {};
 
     return gulp.src('./app/templates/**/*.pug')
-        .pipe(pug({
-            locals: YOUR_LOCALS
-        }))
+        .pipe(pug())
         .pipe(filter(function (file) {
             return !/\/_/.test(file.path) && !/^_/.test(file.relative);
         }))
