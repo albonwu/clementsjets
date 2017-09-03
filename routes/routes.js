@@ -29,12 +29,12 @@ module.exports = function(app) {
 	standardLinks = [
 		['', 'index'],
 		'about',
-		'resources',
 		'updates',
+		'resources',
 		'calendar',
 		'gene',
 		[
-			'/ha-ha-ha-now-you-will-have-to-type-in-this-really-long-url-to-access-the-secret-game-of-four-dimensinoal-tic-tac-toe-ha-ha-ha',
+			'ha-ha-ha-now-you-will-have-to-type-in-this-really-long-url-to-access-the-secret-game-of-four-dimensinoal-tic-tac-toe-ha-ha-ha',
 			'quartictactoe'
 		],
 		'invitational',
@@ -42,6 +42,7 @@ module.exports = function(app) {
 		'logup',
 		'terms',
 		'updates-old',
+		'admin',
 	];
 	standardLinks.forEach(function(url) {
 		if(typeof(url) == 'string') {

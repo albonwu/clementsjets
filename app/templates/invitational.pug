@@ -20,12 +20,28 @@ block content
 			white-space: pre-line;
 			color: black;
 		}
+
+		.l {
+			font-size: 2.5rem;
+			display:inline;
+		}
+		.m {
+			font-size: 2rem;
+			display:inline;
+		}
+		.s {
+			font-size: 1.5rem;
+			display:inline;
+		}
+		li {
+			font-size: 2rem;
+		}
+		h2 {
+			margin-top: 8rem;
+		}
+
 	script.
 		//////////////////////TEAMLIST READING AND WRITING//////////////////////
-		function submit() {
-			$.post('http://gaminged.com/ei1/chsinvite/signup.php?teamName=' + $('#teamname').val());
-			location.reload();
-		}
 
 		function check() {
 			var list = '';
@@ -56,16 +72,15 @@ block content
 		/////////////////////////GIVE OFFICER PRIVLAGES/////////////////////////
 		userAuth(function(auth) {
 			if(auth >= 3) {
-				$('#officer-add-teams').append(
-					'<div style="padding:2rem;width:auto;"><p>' +
-					localStorage.getItem('name') +
-					`, you're an officer, so here's a link to the emailing list: <br>
-						<a href='http://ei1.xyz/chsinvite/emails.txt'>ei1.xyz/chsinvite/emails.txt</a><br>
-						And if a new team confirms that they're going, add them here:</p>
-						<input type='text' class='form-control' style='width: 25vw;display:inline' placeholder='Team Name' id='teamname'>
-						<input type='button' class='btn btn-primary' value='Submit' onClick='submit()'></div>
-					`
-				);
+				$.ajax({
+					url: 'http://gaminged.com/ei1/jets/net/request.php' +
+					'?user=' + localStorage.getItem('user') +
+					'&pass=' + localStorage.getItem('pass') +
+					'&req=invitational',
+					success: function(result) {
+						$('#officer-add-teams').append(result.replace('REPLACENAME', localStorage.getItem('name')));
+					}
+				})
 			} else {
 				$('#officer-add-teams').remove();
 			}
@@ -94,20 +109,48 @@ block content
 	.content-container.container
 		title CHS 2017 Invitational
 		h1.title CLEMENTS INVITATIONAL 2017
-		p(style='display:inline')
-			| Welcome!
-			br
-			| This is the official page regarding the upcoming 2017 Clements Invitational tournament on December 16th at #[a(href='https://www.google.com/maps/place/Clements+High+School/@29.5743129,-95.6355284,17z/data=!3m1!4b1!4m5!3m4!1s0x8640e410a9b5941f:0x9b8073186dff22ae!8m2!3d29.5743129!4d-95.6333397?hl=en') Clements High School].
-			br
-			| We #[i tentatively] are pricing admission is #[p(style='font-size:2.5rem;display:inline') $120]. 
-			br
-			| #[p(style='font-size:1.25rem;') If you can't attend on December 16, you may retrospectively purchase a copy of the tests we used for $75.]
-		p If you'd like to be added to our email list for future updates and registration information, enter your email below:
+		h2(style='margin-top: 2rem') It's finally here.
+		br
+		p.m We're excited to announce that Clements JETS will be hosting its first Science Olympiad Invitational!
+		br
+		p.m It will be held on 
+		p.l December 16th 
+		p.m at #[a(href='https://www.google.com/maps/place/Clements+High+School/@29.5743129,-95.6355284,17z/data=!3m1!4b1!4m5!3m4!1s0x8640e410a9b5941f:0x9b8073186dff22ae!8m2!3d29.5743129!4d-95.6333397?hl=en') Clements High School].
+		h2(style='margin-top: 6rem') About Our Tournament
+		p We promise to deliver a quality invitational for you to enjoy.
+		ul
+			li #[p.l We prevent event conflicts.] Nobody likes to miss out because of a scheduling error, so we are taking great care to distribute our events so you can compete with ease.
+			li #[p.l Everyone likes good quality.] We spent personal time and effort into our tests, and we only use experienced and trained proctors for build events. We're following the official rule book and will do our best to make you feel like you're at nationals.
+			li #[p.l We've got everything covered.] We already have our tests prepared and enough people to run our competition. You can come in and compete with no need for you to worry about parent volenteers or submitting tests.
+		p The Clements Invitational is being hosted because we wanted to help you and your Science Olympiad team better prepare for your advancement to statewide and national levels. We take pride in our work and want to deliver a great experience for you.
+		//div#officer-add-teams
+		//p Heres a list of teams that are confirmed to be attending the invitational:
+		//p(id='teamlist')
+		h2 Here's The Details
+		p.m It will be held on 
+		p.l December 16th 
+		p.m at #[a(href='https://www.google.com/maps/place/Clements+High+School/@29.5743129,-95.6355284,17z/data=!3m1!4b1!4m5!3m4!1s0x8640e410a9b5941f:0x9b8073186dff22ae!8m2!3d29.5743129!4d-95.6333397?hl=en') Clements High School].
+		br
+		p.m Admission is going to be priced at 
+		p.l $120. 
+		br
+		p.s If you can't attend on December 16, you may retrospectively purchase a copy of the tests we used for $75.
+		br
+		p.m The deadline is #[em November 5th.] If you pay after this day, the late fee is $10.
+		br
+		p.m There is a $50 fee if you cancel you drop out of the contest after November 5th.
+		br
+		p.m We're rolling out our payment system shortly, and also will be releasing the schedule as well as other important information, It's recommended that you scroll to the bottom and add your email to our list so you don't miss out.
+		br
+		p.m Results will be visible from this page once the award ceremony ends.
+		h2 How Do I Get Started?
+		p.m Official registration is coming #[em very] shortly!
+		br
+		p.m We have an ESUS system planned and other features coming soon.
+		br
+		p.m Meanwhile, you should enter your email below if you wish to recieve updates:
+		br
 		input(type='text' class='form-control' style='width: 25vw;display:inline' placeholder='Email Address' id='mailname')
 		input(type='button' class='btn btn-primary mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent' value='SUBMIT' onClick='mailsubmit()').
 		p(id='mailerror' style='color: red; font-size: 1.5rem')
-		div#officer-add-teams
-		br
-		p If you would like to confirm to us that your team is attending the Clements Invitational, contact us at jets.chs@gmail.com
-		p Heres a list of teams that are confirmed to be attending the invitational:
-		p(id='teamlist')
+		#officer-add-teams

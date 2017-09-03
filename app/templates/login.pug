@@ -71,7 +71,8 @@ block content
 					submit();
 				}
 			});
-			if(window.location.href.split('#')[1] == 'resources') {
+			var redirect = window.location.href.split('#')[1];
+			if(redirect == 'resources' || redirect == 'calendar') {
 				$('#login-title').text('Log in to view this page')
 			}
 		});

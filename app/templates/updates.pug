@@ -17,10 +17,59 @@ mixin textpost(title, date, content)
 	hr
 
 block content
+	script.
+		$.ajax({
+			url: "http://gaminged.com/ei1/jets/net/updates.html",
+			success: function(result) {
+				$('#blogposts').html(result);
+			}
+		});
+
+		function formatPost (title, content) {
+			var date = new Date();
+			var textDate = ((date.getHours() % 12)) + ':' + date.getMinutes() + ['AM on ', 'PM on '][parseInt(date.getHours() / 12)] + ['January ', 'Febuary ', 'March ', 'April ', 'May ', 'June ', 'July ', 'August ', 'September ', 'October ', 'November ', 'December '][date.getMonth()] + date.getDate() + ', ' + date.getFullYear();
+			return '<div class=post><h2>' + title + '</h2><em style="font-size: 14px">'
+			+ textDate + '</em><br><p>' + content.replace(/\n/g, '<br>') + '</p><hr/></div>';
+		}
+
+		function blogPost() {
+			if($('#posttitle').val() != '' && $('#postbody').val() != '') {
+				console.log()
+				if(confirm('About to post it to the website!')) {
+					$.ajax({
+						url: 'http://gaminged.com/ei1/jets/net/blogpost.php?user=' + localStorage.getItem('user') + '&pass=' + localStorage.getItem('pass') + '&blog=' + formatPost($('#posttitle').val(), $('#postbody').val()),
+						success: function(result) {
+							if(result != 'yay') {
+								alert('An error occured. Copy your work somewhere else and try again later.');
+							} else {
+								window.location.reload();
+							}
+						}
+					});
+				}
+			} else {
+				alert('Don\'t post a blank post!');
+			}
+		}
+
+		userAuth(function(auth) {
+			if(auth >= 3) {
+				$('#newpost').html(`
+					<h2>New Post</h2><br>
+					<input type='text' class='form-control' style='width: 50%' placeholder='Title' id='posttitle'><br>
+					<textarea id='postbody' type='text' class='form-control' style='width: 100%; height: 25vh' placeholder='Write away! Use HTML formatting.'></textarea><br>
+					<p id='postprev'></p>
+					<input type='button' onClick='blogPost()' value='SUBMIT' class='btn btn-primary'>
+				`);
+				setInterval(function() {
+					$('#postprev').html(formatPost($('#posttitle').val(), $('#postbody').val()));
+				}, 0);
+			}
+		});
 	.content-container.container
 		title JETS News
 		h1.title UPDATES
+		div#newpost
 		hr
-		+textpost('Announcing the Clements Invitational 2017!', 'June 13, 2017', 'Clements JETS is hosting a Science Olympiad Invitational! It will be on December 16th at Clements. Price of admission is $120. For more details, visit our <a href="invitational">invitational page.</a>')
-		+textpost('New Website!', 'June 1, 2017', 'As of now, this is is the new official website of Clements JETS! Courtesy of Michael Yu for frameworks and formatting.')
+		div#blogposts
 		a(href='updates-old') Older

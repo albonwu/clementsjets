@@ -8,7 +8,11 @@ script.
 			if(auth == -1) {
 				logOut();
 			} else if(auth >= 2) {
+				$('#actionlist').append('<li><a href="/calendar">CALENDAR</a></li>');
 				$('#actionlist').append('<li><a href="/resources">RESOURCES</a></li>');
+			}
+			if(auth >= 3) {
+				$('#actionlist').append('<li><a href="/admin">ADMIN</a></li>');
 			}
 			if(localStorage.getItem('user') == null) {
 				var url = window.location.href.split('/')[3];
@@ -66,6 +70,5 @@ nav
 			a(href="/") CLEMENTS JETS
 		+menuItem("/about","ABOUT")
 		+menuItem("/updates","UPDATES")
-		+menuItem("/calendar", "CALENDAR")
 		+menuItem("/invitational", "INVITATIONAL")
 	div#login
