@@ -78,16 +78,7 @@ block content
 					'&pass=' + localStorage.getItem('pass') +
 					'&req=invitational',
 					success: function(result) {
-						$('#officer-add-teams').append(
-					'<div style="padding:2rem;width:auto;"><p>' +
-					localStorage.getItem('name') +
-					`, you're an officer, so here's a link to the emailing list: <br>
-						<a href='http://ei1.xyz/chsinvite/emails.txt'>ei1.xyz/chsinvite/emails.txt</a><br>
-						And if a new team confirms that they're going, add them here:</p>
-						<input type='text' class='form-control' style='width: 25vw;display:inline' placeholder='Team Name' id='teamname'>
-						<input type='button' class='btn btn-primary' value='SUBMIT' onClick='submit()'></div>
-					`
-				);
+						$('#officer-add-teams').append(result.replace('REPLACENAME', localStorage.getItem('name')));
 					}
 				})
 			} else {
@@ -151,7 +142,7 @@ block content
 		br
 		p.m We're rolling out our payment system shortly, and also will be releasing the schedule as well as other important information, It's recommended that you scroll to the bottom and add your email to our list so you don't miss out.
 		br
-		p.m Results will be visible from this page once the reward ceremony ends.
+		p.m Results will be visible from this page once the award ceremony ends.
 		h2 How Do I Get Started?
 		p.m Official registration is coming #[em very] shortly!
 		br
@@ -162,3 +153,4 @@ block content
 		input(type='text' class='form-control' style='width: 25vw;display:inline' placeholder='Email Address' id='mailname')
 		input(type='button' class='btn btn-primary mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent' value='SUBMIT' onClick='mailsubmit()').
 		p(id='mailerror' style='color: red; font-size: 1.5rem')
+		#officer-add-teams
