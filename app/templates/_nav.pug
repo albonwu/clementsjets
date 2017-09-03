@@ -2,42 +2,18 @@ mixin menuItem(href, name)
 	li
 		a(href=href)= name
 script.
-	$(document).ready(function() {
-		/////////////////////////////AUTHENTICATION/////////////////////////////
-		userAuth(function(auth) {
-			if(auth == -1) {
-				logOut();
-			} else if(auth >= 2) {
-				$('#actionlist').append('<li><a href="/calendar">CALENDAR</a></li>');
-				$('#actionlist').append('<li><a href="/resources">RESOURCES</a></li>');
-			}
-			if(auth >= 3) {
-				$('#actionlist').append('<li><a href="/admin">ADMIN</a></li>');
-			}
-			if(localStorage.getItem('user') == null) {
-				var url = window.location.href.split('/')[3];
-				if(url.slice(0, 5) != 'login') {
-					$('#login').html('<a href="login' + (url != '' ? '#' + url : '') + '">LOG IN</a>');
-				}
-			} else {
-				$('#login').html('<a href="">HI, ' + localStorage.getItem('name').toUpperCase() + '!</a>');
-				$('#login').click(function() {
-					if(window.confirm('Do you want to log out?')) {
-						logOut();
-						window.location.reload();
-					}
-				});
-			}
-		});
+	var menuClick = 0;
+	var menuOpen = false;
 
-		//////////////////////////MOBILE FRIENDLY MENU//////////////////////////
-		var menuClick = 0;
-		var menuOpen = false;
-
-		if($(window).width() > 911) {
+	function mobileAdjust() {
+		if(
+			($('#actionlist').width() < $('#login').position()['left'] - 100)
+		) {
 			$('#hamburger').remove();
 			$('#mobilemenu').remove();
 		} else {
+			$('#mobilemenu').height($('#actionlist').children().length * 75);
+			$('#hamburger').html('<i class="material-icons" style="color: white;font-size:4rem;line-height:75px">menu</i>');
 			$('#actionlist').css('width', '0px');
 			$('#actionlist').appendTo($('#mobilemenu'));
 			$(document).click(function() {
@@ -60,12 +36,41 @@ script.
 				}
 			});
 		}
+	}
+
+	$(document).ready(function() {
+		/////////////////////////////AUTHENTICATION/////////////////////////////
+		userAuth(function(auth) {
+			if(auth == -1) {
+				logOut();
+			} else if(auth >= 2) {
+				$('#actionlist').append('<li><a href="/calendar">CALENDAR</a></li>');
+				$('#actionlist').append('<li><a href="/resources">RESOURCES</a></li>');
+			}
+			if(auth >= 3) {
+				$('#actionlist').append('<li><a href="/admin">ADMIN</a></li>');
+			}
+			mobileAdjust();
+			if(localStorage.getItem('user') == null) {
+				var url = window.location.href.split('/')[3];
+				if(url.slice(0, 5) != 'login') {
+					$('#login').html('<a href="login' + (url != '' ? '#' + url : '') + '">LOG IN</a>');
+				}
+			} else {
+				$('#login').html('<a href="">HI, ' + localStorage.getItem('name').toUpperCase() + '!</a>');
+				$('#login').click(function() {
+					if(window.confirm('Do you want to log out?')) {
+						logOut();
+						window.location.reload();
+					}
+				});
+			}
+		});
 	});
 nav
 	div#hamburger
-		i(class="material-icons" style="color: white;font-size: 4rem;line-height:75px") menu
 	div#mobilemenu
-	ul#actionlist
+	ul#actionlist(style='position:absolute;left:0px')
 		li#logo
 			a(href="/") CLEMENTS JETS
 		+menuItem("/about","ABOUT")
