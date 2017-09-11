@@ -14,13 +14,14 @@ function transition(forward) {
 	$('#display').animate({
 		opacity: 1,
 	}, 500);
+	$('.slideshow').attr('height', $('#display').attr('height'));
 }
 
 $(document).ready(function() {
 	$('#display').attr('src', directory.replace('#', '1'));
 	autoScroll = setInterval(function() {
 		transition(true);
-	}, 8000);
+	}, 7500);
 	$('#display').click(transition);
 	$('#right').click(transition);
 	$('#left').click(function() {
