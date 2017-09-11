@@ -43,6 +43,7 @@ module.exports = function(app) {
 		'terms',
 		'updates-old',
 		'admin',
+		'join',
 	];
 	standardLinks.forEach(function(url) {
 		if(typeof(url) == 'string') {
