@@ -110,7 +110,7 @@ nav
 	div#login
 	script.
 		if(localStorage.getItem('user') == null) {
-			$('#login').html('<a href="login' + (url != '' ? '#' + url : '') + '">LOG IN</a>');
+			$('#login').html('<a href="login' + (window.location.href != '' ? '#' + window.location.href : '') + '">LOG IN</a>');
 		} else {
 			$('#login').html('<a href="">HI, ' + localStorage.getItem('name').toUpperCase() + '!</a>');
 		}

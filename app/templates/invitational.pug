@@ -50,6 +50,29 @@ block content
 			});
 		}
 
+		function signupForInvite() {
+			$.ajax({
+				url: 'http://gaminged.com/ei1/jets/esus/apply.php' +
+				'?user=' + localStorage.getItem('user') +
+				'&pass=' + localStorage.getItem('pass') +
+				'&school=' + $('#schoolname').val() +
+				'&quantity=' + $('#quantity').val() +
+				'&division=' + $('#division').val() +
+				'&address=' + $('#address').val() +
+				'&schoolphone=' + $('#schoolphone').val() +
+				'&cellphone=' + $('#cellphone').val() +
+				'&cheese=' + $('#cheese').val() +
+				'&pepperoni=' + $('#pepperoni').val(),
+				success: function(result) {
+					if(result != -1) {
+						alert('Ok! If we don\'t respond within about two days, email us at jets.chs@gmail.com.');
+					} else {
+						alert('Uh oh, I don\'t think it worked.')
+					}
+				}
+			});
+		}
+
 		$(document).ready(function() {
 			check();
 			setInterval(function() {
@@ -67,23 +90,82 @@ block content
 					mailsubmit();
 				}
 			})
-		});
-
-		/////////////////////////GIVE OFFICER PRIVLAGES/////////////////////////
-		userAuth(function(auth) {
-			if(auth >= 3) {
-				$.ajax({
-					url: 'http://gaminged.com/ei1/jets/net/request.php' +
-					'?user=' + localStorage.getItem('user') +
-					'&pass=' + localStorage.getItem('pass') +
-					'&req=invitational',
-					success: function(result) {
-						$('#officer-add-teams').append(result.replace('REPLACENAME', localStorage.getItem('name')));
-					}
-				})
-			} else {
-				$('#officer-add-teams').remove();
-			}
+			///////////////////////GIVE OFFICER PRIVLAGES///////////////////////
+			userAuth(function(auth) {
+				if(auth >= 3) {
+					$.ajax({
+						url: 'http://gaminged.com/ei1/jets/net/request.php' +
+						'?user=' + localStorage.getItem('user') +
+						'&pass=' + localStorage.getItem('pass') +
+						'&req=invitational',
+						success: function(result) {
+							$('#officer-add-teams').append(result.replace('REPLACENAME', localStorage.getItem('name')));
+						}
+					});
+				} else {
+					$('#officer-add-teams').remove();
+				}
+				if(auth == -1) {
+					$('#getstarted').html('<p class=\'m\'>First, you\'re going to want to create an account. <br> <a href=\'logup#invitational#getstarted\'>Click here to do that!</a> <br> Come back here when you\'re done.</p>');
+				} else {
+					$.ajax({
+						url: 'http://gaminged.com/ei1/jets/esus/validateCaptain.php' +
+						'?user=' + localStorage.getItem('user') +
+						'&pass=' + localStorage.getItem('pass'),
+						success: function(result) {
+							if(result == -1) {
+								if(auth == 0) {
+									$('#getstarted').append(`
+										<p class='m'>
+											Hi ` + localStorage.getItem('name') + `, your account isn't verified yet; that just means we need to contact you and make sure you are who you say you are. <br>
+											But if you're a coach of your Science Olympiad team(s), fill out the form below to sign up! <br> <br>
+										</p>
+									`);
+								} else {
+									$('#getstarted').append(`
+										<p class='m'>
+											Hi ` + localStorage.getItem('name') + `! If you're a coach of your Science Olympiad team(s), you can go ahead and fill out the information below to sign up!
+										</p>
+									`);
+								}
+								$('#getstarted').append(`
+									<p class='m'>What's the name of the school?</p><br>
+									<input id='schoolname' type='text' class='form-control' placeholder='School Name'><br>
+									<p class='m'>How many teams do you have?</p>
+									<select id='quantity'>
+										<option>1</option>
+										<option>2</option>
+										<option>3</option>
+									</select><br>
+									<p class='m'>What division are your teams in?</p>
+									<select id='division'>
+										<option>C</option>
+										<option>B</option>
+									</select><br>
+									<p class='m'>What is your mailing address?</p><br>
+									<input id='address' type='text' class='form-control' placeholder='Mailing Address'><br>
+									<p class='m'>What is your phone number in school?</p><br>
+									<input id='schoolphone' type='text' class='form-control' placeholder='School Phone Number'><br>
+									<p class='m'>What is your cell phone number?</p><br>
+									<input id='cellphone' type='text' class='form-control' placeholder='Cellphone Number'><br>
+									<p class='m'>Pizza costs $15 each. How many do you want for:</p><br>
+									<p class='m'>Cheese Pizza:</p> <input id='cheese' type='number' placeholder='0'><br>
+									<p class='m'>Pepperoni Pizza:</p> <input id='pepperoni' type='number' placeholder='0'><br>
+									<p class='m'>Got any questions? Email jets.chs@gmail.com</p><br>
+									<input type='button' class='btn btn-primary' value='SUBMIT' onClick='signupForInvite()'>
+									<br>
+									<p class='m'>Below is if you don't want to sign up for anything just yet.</p>
+									<br><br>
+								`);
+							} else {
+								$('#getstarted').append(`
+									<p class='m'>Congratulations! You're all set. This page is still under development, but soon you can come back here and check up on the status of things like your information, payment, and ESUS sign up.</p>
+								`);
+							}
+						}
+					});
+				}
+			});
 		});
 
 		///////////////////////////////EMAIL LIST///////////////////////////////
@@ -159,11 +241,8 @@ block content
 			script.
 				$('.block').hide();
 			h2 How Do I Get Started?
-			p.m Official registration is coming #[em very] shortly!
-			br
-			p.m We have an ESUS system planned and other features coming soon.
-			br
-			p.m Meanwhile, you should enter your email below if you wish to recieve updates:
+			div#getstarted
+			p.m If you just want to get email updates, type in your email below to get added to the email list.
 			br
 			input(type='text' class='form-control' style='width: 25vw;display:inline' placeholder='Email Address' id='mailname')
 			input(type='button' class='btn btn-primary mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent' value='SUBMIT' onClick='mailsubmit()').
