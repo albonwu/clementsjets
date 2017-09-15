@@ -2,6 +2,37 @@ extends _layout
 
 block content
 	.content-container.container
+		style.
+			.col2 {
+				width: 10%;
+				display: inline-block;
+				padding: 2%;
+			}
+			.circle {
+				width: 100%;
+				padding-top: 100%;
+				border-radius: 100vw;
+			}
+			.row1 {
+				width: 100%;
+				display: flex;
+				align-items: center;
+				margin: 4% 0;
+			}
+			.col1 {
+				width: 30%;
+				font-size: 4vh;
+				text-align: right;
+				display: inline-block;
+			}
+			.col3 {
+				width: 60%;
+				font-size: 2rem;
+				display: inline-block;
+			}
+			nav {
+				left: 15px;
+			}
 		title JETS Donation
 		h1.title We Need Your Help!
 		p.
@@ -11,5 +42,55 @@ block content
 		p.
 			Your funding will allow us to aquire much needed building materials and equipment (raw materials, electronics, 3D printing) and educational resources that contribute heavily to our success. You will also be helping us with registration fees, rooms, and transportration regarding tournaments at local and national levels, including our very own Clements Invitational.
 		h2 Levels of sponsorship
+		.row1
+			.col1.diamond(style='font-family:Montserrat;color:#0cf').
+				DIAMOND #[br]
+				$1000+
+			.col2.diamondbg
+				div.circle(style='background-color:#0cf')
+			.col3.diamond(style='font-family:Roboto;color:#0af')
+				ul
+					li Recognition as club's main sponsor
+					li Large recognition on team banner
+					li Large recognition on T-shirt
+					li Prominent advertisement on website, social media, and invitational
+					li + All gold rewards
+		.row1
+			.col1(style='font-family:Montserrat;color:#ea0').
+				GOLD #[br]
+				$500-$999
+			.col2
+				div.circle(style='background-color:#ea0')
+			.col3(style='font-family:Roboto;color:#d80')
+				ul
+					li Recognition on Science Olympiad builds
+					li Standard sized recognition on team banner
+					li Logo display at Clements Invitational
+					li + All silver rewards
+		.row1
+			.col1(style='font-family:Montserrat;color:#aaa').
+				SILVER #[br]
+				$250-$499
+			.col2
+				div.circle(style='background-color:#aaa')
+			.col3(style='font-family:Roboto;color:#888')
+				ul
+					li Recognition on Social Media
+					li Standard sized recognition on T-shirt
+					li + All bronze rewards
+		.row1
+			.col1(style='font-family:Montserrat;color:#950').
+				BRONZE #[br]
+				$100-$249
+			.col2
+				div.circle(style='background-color:#950')
+			.col3(style='font-family:Roboto;color:#730')
+				ul
+					li Recognition on website
+					li Optional monthly updates on competitions
+		h2 We appreciate your consideration
 		p.
-			
+			Please make checks payable to "Clements Activity Fund" and write "Clements JETS" on the memo line. All contributions are fully deductible from income taxes as long as they do not exceed 10% your taxible. #[br]
+			#[br]
+			We thank you for your time and would love to hear back!#[br]
+			Our email is: jets.chs@gmail.com
