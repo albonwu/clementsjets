@@ -21,14 +21,33 @@ block content
 			}
 			.col1 {
 				width: 30%;
-				font-size: 4vh;
+				font-size: 3.5vh;
 				text-align: right;
 				display: inline-block;
 			}
 			.col3 {
 				width: 60%;
-				font-size: 2rem;
+				font-size: 3vh;
 				display: inline-block;
+			}
+			@media only screen and (orientation : portrait) {
+				.row1 {
+					width: 100%;
+					display: initial;
+					margin: 0 0;
+				}
+				.col1 {
+					display: block;
+					width: 100%;
+					text-align: center;
+				}
+				.col2 {
+					display: none;
+				}
+				.col3 {
+					display: block;
+					width: 100%;
+				}
 			}
 		title JETS Donation
 		h1.title We Need Your Help!
