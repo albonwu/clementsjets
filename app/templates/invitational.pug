@@ -39,7 +39,20 @@ block content
 		h2 {
 			margin-top: 8rem;
 		}
-
+		@keyframes getgoing {
+			0% {opacity: 0; transform: scale(0.5);}
+			100% {opacity: 1; transform: scale(1);}
+		}
+		#getgoing {
+			border-radius: 16px;
+			border: 2px solid rgb(41, 128, 185);
+			padding: 2rem;
+			background-color: rgba(41, 128, 185, 0.25);
+			animation: getgoing 0.75s;
+			animation-timing-function: ease-in-out;
+			animation-delay: 0.25s;
+			animation-fill-mode: both;
+		}
 	script.
 		//////////////////////TEAMLIST READING AND WRITING//////////////////////
 
@@ -66,6 +79,7 @@ block content
 				success: function(result) {
 					if(result != -1) {
 						alert('Ok! If we don\'t respond within about two days, email us at jets.chs@gmail.com.');
+						window.location.reload();
 					} else {
 						alert('Uh oh, I don\'t think it worked.')
 					}
@@ -74,6 +88,7 @@ block content
 		}
 
 		$(document).ready(function() {
+			$('#getgoing').hide();
 			check();
 			setInterval(function() {
 				check();
@@ -106,29 +121,31 @@ block content
 					$('#officer-add-teams').remove();
 				}
 				if(auth == -1) {
-					$('#getstarted').html('<p class=\'m\'>First, you\'re going to want to create an account. <br> <a href=\'logup#invitational#getstarted\'>Click here to do that!</a> <br> Come back here when you\'re done.</p>');
+					$('#getstarted').html('<p class=\'m\'>First, you\'re going to want to create an account. <br> <a href=\'logup#invitational#getstarted\'>Click here to do that!</a> <br> Come back here when you\'re done.<br><br></p>');
+					$('#getgoing').hide();
 				} else {
 					$.ajax({
 						url: 'http://gaminged.com/ei1/jets/esus/validateCaptain.php' +
 						'?user=' + localStorage.getItem('user') +
 						'&pass=' + localStorage.getItem('pass'),
 						success: function(result) {
+							$('#getgoing').show();
 							if(result == -1) {
 								if(auth == 0) {
-									$('#getstarted').append(`
+									$('#getgoing').append(`
 										<p class='m'>
 											Hi ` + localStorage.getItem('name') + `, your account isn't verified yet; that just means we need to contact you and make sure you are who you say you are. <br>
 											But if you're a coach of your Science Olympiad team(s), fill out the form below to sign up! <br> <br>
 										</p>
 									`);
 								} else {
-									$('#getstarted').append(`
+									$('#getgoing').append(`
 										<p class='m'>
 											Hi ` + localStorage.getItem('name') + `! If you're a coach of your Science Olympiad team(s), you can go ahead and fill out the information below to sign up!
 										</p>
 									`);
 								}
-								$('#getstarted').append(`
+								$('#getgoing').append(`
 									<p class='m'>What's the name of the school?</p><br>
 									<input id='schoolname' type='text' class='form-control' placeholder='School Name'><br>
 									<p class='m'>How many teams do you have?</p>
@@ -157,10 +174,18 @@ block content
 									<p class='m'>Below is if you don't want to sign up for anything just yet.</p>
 									<br><br>
 								`);
-							} else {
-								$('#getstarted').append(`
-									<p class='m'>Congratulations! You're all set. This page is still under development, but soon you can come back here and check up on the status of things like your information, payment, and ESUS sign up.</p>
+							} else if(result == 0) {
+								$('#getgoing').append(`
+									<p class='m'>Hi, ` + localStorage.getItem('name') + `! You're in the system; we just need to verify everything with you and make sure you are who you say you are. If you have any questions or concerns, contact us at jets.chs@gmail.com</p>
 								`);
+							} else {
+								$('#getgoing').append(`
+									<p class='m'>Congratulations, ` + localStorage.getItem('name') + `! You're all set! <br>
+									ESUS schedule slot signups will be on this website on December 1st at 6:00PM. If you have any general questions or concerns, contact us at jets.chs@gmail.com! <br> <br>
+									` + result + `
+									<p class='m'><br><br> Also, you're going to need these forms:<br><a target='_blank' href='https://docs.google.com/document/d/1Vai3nbtD3J_aJk4kdZNXHOisI36Gknt8mwx2fxsaZo8/edit?usp=sharing'>Assumption of Risk and Physician Form</a><br>
+									<a target='_blank' href='https://docs.google.com/document/d/1c5NPYaKCAebyGmB3QqfeEo3Mb9VLij1Gt3Aki4oQNYw/edit?usp=sharing'>Competition Policy Form</a><br>
+									<a target='_blank' href='https://docs.google.com/document/d/1TEffmQFCTCORDsMWHuYV48dN4DrDrZX6-Q-pQ8dxJbo/edit?usp=sharing'>Final Team Registration Form</a></p>`);
 							}
 						}
 					});
@@ -194,6 +219,8 @@ block content
 			script.
 				$('.block').hide();
 			h1.title CLEMENTS INVITATIONAL 2017
+		.block
+			#getgoing
 		div.block
 			script.
 				$('.block').hide();
@@ -242,6 +269,13 @@ block content
 				$('.block').hide();
 			h2 How Do I Get Started?
 			div#getstarted
+			p.m.
+				When you get to the tournament, you need to have these forms filled out: #[br]
+				#[a(target='_blank' href='https://docs.google.com/document/d/1Vai3nbtD3J_aJk4kdZNXHOisI36Gknt8mwx2fxsaZo8/edit?usp=sharing') Assumption of Risk and Physician Form]#[br]
+				#[a(target='_blank' href='https://docs.google.com/document/d/1c5NPYaKCAebyGmB3QqfeEo3Mb9VLij1Gt3Aki4oQNYw/edit?usp=sharing') Competition Policy Form]#[br]
+				#[a(target='_blank' href='https://docs.google.com/document/d/1TEffmQFCTCORDsMWHuYV48dN4DrDrZX6-Q-pQ8dxJbo/edit?usp=sharing') Final Team Registration Form]#[br]
+			p.m If online registration just isn't your thing, #[a(href='https://docs.google.com/document/d/15T3nwkXfhC-1x1VFg4v2C-b82ZYjmLbmW-yk1RjfwF4/edit?usp=sharing') click here for a paper form.]
+			br
 			p.m If you just want to get email updates, type in your email below to get added to the email list.
 			br
 			input(type='text' class='form-control' style='width: 25vw;display:inline' placeholder='Email Address' id='mailname')
