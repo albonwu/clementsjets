@@ -58,8 +58,8 @@ block content
 
 		function check() {
 			var list = '';
-			$.get('http://gaminged.com/ei1/chsinvite/teams.txt?refresh=' + Math.random(), function(data) {
-				$('#teamlist').text(data);
+			$.get('http://gaminged.com/ei1/jets/net/request.php?req=invite-teams&refresh=' + Math.random(), function(data) {
+				$('#teamlist').html(data);
 			});
 		}
 
@@ -273,6 +273,10 @@ block content
 			p.m #[a(href='https://drive.google.com/open?id=1m1IfP4fYkSLFQ4zyN-VUOPt1bxf-BhoYeQcy4QZvNq4') Event schedule]
 			br
 			p.m Results will be visible from this page once the award ceremony ends.
+			br
+			p.m Here are the teams that will be attending:
+			br
+			p.m#teamlist
 		div.block
 			script.
 				$('.block').hide();
