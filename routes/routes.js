@@ -44,7 +44,7 @@ module.exports = function(app) {
 		'updates-old',
 		'admin',
 		'join',
-		'invitationalsignup',
+		'invitationaladmin',
 		'donate',
 	];
 	standardLinks.forEach(function(url) {
