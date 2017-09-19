@@ -33,119 +33,127 @@ block content
 			opacity: 1;
 		}
 	script(type='text/javascript').
-		$.ajax({
-			url: 'http://gaminged.com/ei1/jets/esus/requests.json?tmp=' + Math.random(),
-			success: function(result) {
-				if(result != '{}') {
-					var json = JSON.parse(result);
-					var pendingText = '';
-					pendingText += `
-						<table>
-							<thead>
-								<tr>
-									<th>Username</th>
-									<th>School</th>
-									<th>Quantity</th>
-									<th>Division</th>
-									<th>Address</th>
-									<th>School Phone</th>
-									<th>Cellphone</th>
-									<th>Cheese</th>
-									<th>Pepperoni</th>
-								</tr>
-							</thead>
-							<tbody>
-					`;
-					for(var user in json) {
-						pendingText += '<tr><td>' + user + '</td>';
-						for(var attribute in json[user]) {
-							pendingText += '<td>' + json[user][attribute] + '</td>';
-						}
-						pendingText += '</tr>';
-					}
-					pendingText += '</tbody></table>';
-					$('#pending-teams').append(pendingText);
-				} else {
-					$('#pending-teams').append('<p>It looks like all the teams that are signed up are confirmed!</p>')
-				}
-			}
-		});
-		$.ajax({
-			url: 'http://gaminged.com/ei1/jets/esus/captains.json?tmp=' + Math.random(),
-			success: function(result) {
-				if(result != '{}') {
-					var json = JSON.parse(result);
-					var pendingText = '';
-					pendingText += `
-						<table>
-							<thead>
-								<tr>
-									<th>Username</th>
-									<th>School</th>
-									<th>Quantity</th>
-									<th>Division</th>
-									<th>Address</th>
-									<th>School Phone</th>
-									<th>Cellphone</th>
-									<th>Cheese</th>
-									<th>Pepperoni</th>
-									<th>Money Owed</th>
-								</tr>
-							</thead>
-							<tbody>
-					`;
-					for(var user in json) {
-						pendingText += '<tr><td>' + user + '</td>';
-						for(var attribute in json[user]) {
-							if(attribute == 'owed') {
-								pendingText += '<td class="owed">' + json[user][attribute] + '<i class="material-icons">create</i>';
-							} else {
-								pendingText += '<td>' + json[user][attribute];
+		userAuth(function(auth) {
+			if(auth >= 3) {
+				$.ajax({
+					url: 'http://gaminged.com/ei1/jets/esus/requests.json?tmp=' + Math.random(),
+					success: function(result) {
+						if(result != '{}') {
+							var json = JSON.parse(result);
+							var pendingText = '';
+							pendingText += `
+								<table>
+									<thead>
+										<tr>
+											<th>Username</th>
+											<th>School</th>
+											<th>Quantity</th>
+											<th>Division</th>
+											<th>Address</th>
+											<th>School Phone</th>
+											<th>Cellphone</th>
+											<th>Cheese</th>
+											<th>Pepperoni</th>
+										</tr>
+									</thead>
+									<tbody>
+							`;
+							for(var user in json) {
+								pendingText += '<tr><td>' + user + '</td>';
+								for(var attribute in json[user]) {
+									pendingText += '<td>' + json[user][attribute] + '</td>';
+								}
+								pendingText += '</tr>';
 							}
-							pendingText += '</td>';
+							pendingText += '</tbody></table>';
+							$('#pending-teams').append(pendingText);
+						} else {
+							$('#pending-teams').append('<p>It looks like all the teams that are signed up are confirmed!</p>')
 						}
-						pendingText += '</tr>';
 					}
-					pendingText += '</tbody></table>';
-					$('#confirmed-teams').append(pendingText);
-				} else {
-					$('#confirmed-teams').append('<p>It looks like all the teams that are signed up are confirmed!</p>')
-				}
+				});
+				$.ajax({
+					url: 'http://gaminged.com/ei1/jets/esus/captains.json?tmp=' + Math.random(),
+					success: function(result) {
+						if(result != '{}') {
+							var json = JSON.parse(result);
+							var pendingText = '';
+							pendingText += `
+								<table>
+									<thead>
+										<tr>
+											<th>Username</th>
+											<th>School</th>
+											<th>Quantity</th>
+											<th>Division</th>
+											<th>Address</th>
+											<th>School Phone</th>
+											<th>Cellphone</th>
+											<th>Cheese</th>
+											<th>Pepperoni</th>
+											<th>Money Owed</th>
+										</tr>
+									</thead>
+									<tbody>
+							`;
+							for(var user in json) {
+								pendingText += '<tr><td>' + user + '</td>';
+								for(var attribute in json[user]) {
+									if(attribute == 'owed') {
+										pendingText += '<td class="owed">' + json[user][attribute] + '<i class="material-icons">create</i>';
+									} else {
+										pendingText += '<td>' + json[user][attribute];
+									}
+									pendingText += '</td>';
+								}
+								pendingText += '</tr>';
+							}
+							pendingText += '</tbody></table>';
+							$('#confirmed-teams').append(pendingText);
+						} else {
+							$('#confirmed-teams').append('<p>It looks like all the teams that are signed up are confirmed!</p>')
+						}
 
-				$('.owed').click(function() {
-					var response = prompt('Please type the following: My password is [PASSWORD] and [TARGET USERNAME] now owes [NEW AMOUNT] dollars').toLowerCase().replace(/\,/g, '').replace(/\./g, '').replace(/\$/g, '');
-					var regex = /my password is (.*) and (.*) now owes (.*) dollars/;
-					if(response.match(regex)[1] == localStorage.getItem('pass')) {
-						$.ajax({
-							url: 'http://gaminged.com/ei1/jets/esus/updateDebt.php' +
-							'?user=' + localStorage.getItem('user') +
-							'&pass=' + localStorage.getItem('pass') +
-							'&target=' + response.match(regex)[2] +
-							'&new-debt=' + response.match(regex)[3],
-							success: function() {
-								window.location.reload();
+						$('.owed').click(function() {
+							var response = prompt('Please type the following: My password is [PASSWORD] and [TARGET USERNAME] now owes [NEW AMOUNT] dollars').toLowerCase().replace(/\,/g, '').replace(/\./g, '').replace(/\$/g, '');
+							var regex = /my password is (.*) and (.*) now owes (.*) dollars/;
+							if(response.match(regex)[1] == localStorage.getItem('pass')) {
+								$.ajax({
+									url: 'http://gaminged.com/ei1/jets/esus/updateDebt.php' +
+									'?user=' + localStorage.getItem('user') +
+									'&pass=' + localStorage.getItem('pass') +
+									'&target=' + response.match(regex)[2] +
+									'&new-debt=' + response.match(regex)[3],
+									success: function() {
+										window.location.reload();
+									}
+								});
 							}
 						});
 					}
 				});
-			}
-		});
-		$(document).ready(function() {
-			$('#confirmer').click(function() {
-				var response = prompt('Please type the following: My password is [PASSWORD] and I have confirmed that [TARGET USERNAME] is attending').toLowerCase().replace(/\,/g, '').replace(/\./g, '');
-				var regex = /my password is (.*) and i have confirmed that (.*) is attending/;
-				if(response.match(regex)[1] == localStorage.getItem('pass')) {
-					$.ajax({
-						url: 'http://gaminged.com/ei1/jets/esus/new.php' +
-						'?user=' + localStorage.getItem('user') +
-						'&pass=' + localStorage.getItem('pass') +
-						'&target=' + response.match(regex)[2],
-						success: function() {
-							window.location.reload();
+				$(document).ready(function() {
+					$('#confirmer').click(function() {
+						var response = prompt('Please type the following: My password is [PASSWORD] and I have confirmed that [TARGET USERNAME] is attending').toLowerCase().replace(/\,/g, '').replace(/\./g, '');
+						var regex = /my password is (.*) and i have confirmed that (.*) is attending/;
+						if(response.match(regex)[1] == localStorage.getItem('pass')) {
+							$.ajax({
+								url: 'http://gaminged.com/ei1/jets/esus/new.php' +
+								'?user=' + localStorage.getItem('user') +
+								'&pass=' + localStorage.getItem('pass') +
+								'&target=' + response.match(regex)[2],
+								success: function() {
+									window.location.reload();
+								}
+							});
 						}
 					});
-				}
-			});
+				});
+			} else {
+				$(document).ready(function() {
+					$('.content-container.container').html('<h1 class="title">Whoops!</h1><p>Who told you about this page? You shouldn\'t be here!</p>');
+				});
+			}
 		});
 	.content-container.container
 		#pending-teams
