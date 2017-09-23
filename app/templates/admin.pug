@@ -33,52 +33,67 @@ block content
 				opacity: 1;
 			}
 		script.
-			$.ajax({
-				url: 'http://gaminged.com/ei1/jets/net/admin.php' +
-				'?user=' + localStorage.getItem('user') +
-				'&pass=' + localStorage.getItem('pass'),
-				success: function(result) {
-					if(result == 0) {
-						$('#admin-table').html(`
-							<h1 class='title'>Uh Oh.</h1>
-							<p>
-								Who told you about this page?<br>
-								You aren't supposed to be here!
-							</p>
-						`);
-					} else {
-						$('#admin-table').html(result);
-						$('.authority').click(function() {
-							alert('The four access levels are as follows:\nUnverified User: has the same access as someone who is not logged in.\nVerified User: can participate in public chats but cannot access JETS resources.\nJETS Member: may access JETS resources but may not modify information regarding users other than themselves\nJETS Officer: able to modify website and user data.');
-							var input = prompt('Please type the following: My password is [password] and I wish to change [whoever] to a [status]').replace(/\,/g, '').replace(/\./g, '').toLowerCase();
-							if(input.split(' and i wish to change')[0] == 'my password is ' + localStorage.getItem('pass')) {
-								var newauth = ['unverified user', 'verified user', 'jets member', 'jets officer'].indexOf(input.split('to a ')[1]);
-								var subject = input.split('and i wish to change ')[1].split(' to a')[0];
-								if(newauth == -1) {
-									alert('Please enter the name of a valid access level.');
-								} else {
-									$.ajax({
-										url: 'http://gaminged.com/ei1/jets/net/changeauth.php' +
-										'?user=' + localStorage.getItem('user') +
-										'&pass=' + localStorage.getItem('pass') +
-										'&subject=' + subject +
-										'&newauth=' + newauth,
-										success: function(result) {
-											if(result == 'yay') {
-												window.location.reload();
-											} else {
-												alert('hm didnt work feelsbadman sad reax onle');
-											}
-										}
-									})
+			function setChangingButtons() {
+				$('.authority').click(function() {
+					alert('The four access levels are as follows:\nUnverified User: has the same access as someone who is not logged in.\nVerified User: can participate in public chats but cannot access JETS resources.\nJETS Member: may access JETS resources but may not modify information regarding users other than themselves\nJETS Officer: able to modify website and user data.');
+					var input = prompt('Please type the following: My password is [password] and I wish to change [whoever] to a [status]').replace(/\,/g, '').replace(/\./g, '').toLowerCase();
+					if(input.split(' and i wish to change')[0] == 'my password is ' + localStorage.getItem('pass')) {
+						var newauth = ['unverified user', 'verified user', 'jets member', 'jets officer'].indexOf(input.split('to a ')[1]);
+						var subject = input.split('and i wish to change ')[1].split(' to a')[0];
+						if(newauth == -1) {
+							alert('Please enter the name of a valid access level.');
+						} else {
+							$.ajax({
+								url: 'http://gaminged.com/ei1/jets/net/changeauth.php' +
+								'?user=' + localStorage.getItem('user') +
+								'&pass=' + localStorage.getItem('pass') +
+								'&subject=' + subject +
+								'&newauth=' + newauth,
+								success: function(result) {
+									if(result == 'yay') {
+										window.location.reload();
+									} else {
+										alert('hm didnt work feelsbadman sad reax onle');
+									}
 								}
-							} else {
-								alert('The instructions were not followed correctly.');
-							}
-						});
+							})
+						}
+					} else {
+						alert('The instructions were not followed correctly.');
 					}
-				}
-			});
+				});
+			}
+
+			var lastResult = '';
+			var Yike = new Audio('./dist/audio/Yike.mp3');
+
+			function update() {
+				$.ajax({
+					url: 'http://gaminged.com/ei1/jets/net/admin.php' +
+					'?user=' + localStorage.getItem('user') +
+					'&pass=' + localStorage.getItem('pass') +
+					'&tmp=' + Math.random(),
+					success: function(result) {
+						if(result == 0) {
+							$('#admin-table').html(`
+								<h1 class='title'>Uh Oh.</h1>
+								<p>
+									Who told you about this page?<br>
+									You aren't supposed to be here!
+								</p>
+							`);
+						} else if(result != lastResult) {
+							if(lastResult != '') {
+								Yike.play();
+							}
+							lastResult = result;
+							$('#admin-table').html(result);
+						}
+					}
+				});
+			}
+			update();
+			setInterval(update, 3000);
 		#admin-table
 		br
 		p
