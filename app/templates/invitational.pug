@@ -123,7 +123,7 @@ block content
 				if(auth == -1) {
 					$('#getstarted').html('<p class=\'m\'>First, you\'re going to want to create an account. <br> <a href=\'logup#invitational#getstarted\'>Click here to do that!</a> <br> Come back here when you\'re done.<br><br></p>');
 					$('#getgoing').hide();
-				} else {
+				} else if(auth == 0 || auth == 1) {
 					$.ajax({
 						url: 'http://gaminged.com/ei1/jets/esus/validateCaptain.php' +
 						'?user=' + localStorage.getItem('user') +
@@ -190,6 +190,9 @@ block content
 							}
 						}
 					});
+				} else {
+					$('#getgoing').show();
+					$('#getgoing').html('<p class="m">You\'re a member of JETS, so this page probably doesn\'t apply to you, but feel free to browse anyway!</p>');
 				}
 			});
 		});
@@ -272,8 +275,10 @@ block content
 			br
 			p.m Results will be visible from this page once the award ceremony ends.
 			br
-			p.m Here are the teams that will be attending:
-			br
+		div.block
+			script.
+				$('.block').hide();
+			h2 Attending Teams
 			p.m#teamlist
 		div.block
 			script.
