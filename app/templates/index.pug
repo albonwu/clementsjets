@@ -85,3 +85,249 @@ block content
 			}
 		h1 CLEMENTS JETS
 		h3#welcome Junior Engineering & Technical S#[a(href='gene' style='color:inherit;text-decoration:none;cursor:text') o]ciety
+		div#triangle-container
+			div#triangle
+		style.
+			@keyframes pop-in {
+				0% {opacity: 0; transform: translate(0, 20vh);}
+				100% {opacity: 1; transform: translate(0, 0);}
+			}
+			@keyframes bob {
+				0% {transform: translate(0, 0);}
+				50% {transform: translate(0, 6vh);}
+				100% {transform: translate(0, 0);}
+			}
+			#triangle-container {
+				position: absolute;
+				display: flex;
+				justify-content: center;
+				width: 100vw;
+				height: 50vh;
+				bottom: 0;
+			}
+			#triangle {
+				position: absolute;
+				width: 0;
+				height: 0;
+				border-left: 50px solid transparent;
+				border-right: 50px solid transparent;
+				border-top: 50px solid rgba(52, 152, 219, 1);
+				bottom: 13vh;
+				transform: translate(0, 30vh);
+				opacity: 0;
+				animation-name: pop-in, bob, pop-in;
+				animation-duration: 1s, 2s, 0.5s;
+				animation-delay: 0s, 1s, 3s;
+				animation-fill-mode: both, forwards, forwards;
+				animation-iteration-count: 1, infinite, 1;
+				animation-timing-function: ease-out, ease-in-out, ease-out;
+				animation-direction: normal, normal, reverse;
+			}
+	script.
+		$('#landing-container').hide().fadeIn(1000);
+		$('#triangle').fadeIn(500);
+	.container(style=`
+		margin-top: 75px;
+		border-radius:4rem;
+		padding: 4rem;
+		border: 3px solid rgb(41, 128, 185);
+	`)
+		h2(style='text-align:center;').
+			Special thanks to:
+		.row
+			img(src='dist/imgs/sponsors/hirsch_westheimer.jpeg' style='width:100%')
+		.row(style='display:flex;align-items:center')
+			.col-md-3
+				img(src='dist/imgs/sponsors/raising-canes.png' style='width:100%')
+			.col-md-3(style='font-family:Montserrat;font-size:1.25vw;text-align:center').
+				Dhruva Karkada #[br]
+				Kevin Chen #[br]
+				Angela Hwang #[br]
+				Saarang Panchavati #[br]
+				Varun Rajaram
+			.col-md-3(style='font-family:Montserrat; font-size:1.25vw;text-align:center').
+				Michael Yu #[br]
+				Alan Baonan Ji #[br]
+				Claire Dong #[br]
+				Leon Yuan
+			.col-md-3
+				img(src='dist/imgs/sponsors/HGMS.png' style='width:100%')
+	.container.content-contianer(style='margin-top: 75px')
+		h1.title ABOUT US
+		p The William P. Clements Junior Engineering Technical Society (JETS) is a science and engineering club focusing on three main competitions: Science Olympiad, Science Bowl, and TEAMS. Our goal each competition season is to place first in each of those three competitions and be successful in the national competitions, as well as promote science and engineering in our community.
+		h1.title COMPETITIONS
+		.row
+			.col-md-4.col-sm-12
+				.img-container
+					img(src="./dist/imgs/Science_Olympiad_Logo.png")
+				h2 Science Olympiad
+				p Teams of 15 students compete in 23 different science-based events, from Materials Science to Astronomy. Five of these events are building-intensive events, where students construct projects such as bridges and robotic arms. Science Olympiad stresses teamwork: all events require teams of 2 or more, and qualification to State and Nationals is by team.
+			.col-md-4.col-sm-12
+				.img-container
+					img(src="./dist/imgs/Science_Bowl_Logo.png")
+				h2 Science Bowl
+				p Teams of 4 face off against each other in answering science questions from every field: biology, chemistry, physics, mathematics, earth and space, and energy . The competition is based on a buzzer system and hinges upon speed, knowledge, and team synergy.
+			.col-md-4.col-sm-12
+				.img-container
+					img(src="./dist/imgs/TEAMS_Logo.png")
+				h2 TEAMS
+				p TEAMS is a question-essay based competition based on applying engineering concepts to a specific field, such internet security. Eight people work together to complete 100 multiple choice questions and write essays on specific scenarios that they have familiarized themselves with. We send 2 underclassmen and 2 upperclassmen teams.
+		h1.title ACHIEVEMENTS
+		.row
+			.col-md-4.col-sm-12
+				h2 Science Olympiad
+				p 2017
+				ul
+					li 1st and 2nd at Regionals
+					li 2nd at State
+					li 6th at Nationals!!
+				p 2016
+				ul
+					li 2nd at Regionals
+					li 3rd at State
+				p 2015
+				ul
+					li 2nd at Regionals
+					li 3rd at State
+				p 2014
+				ul
+					li 1st at Regionals
+					li 1st at State
+					li 14th at Nationals
+				p 2013
+				ul
+					li 1st at Regionals
+					li 1st at State
+					li 30th at Nationals
+				p 2012
+				ul
+					li 1st at Regionals
+					li 3rd at State
+			.col-md-4.col-sm-12
+				h2 Science Bowl
+				p 2017
+				ul
+					li 2nd and 4th at State
+				p 2016
+				ul
+					li 1st at Regionals
+					li 3rd at Nationals
+				p 2014
+				ul
+					li 2nd at Regionals
+				p 2012
+				ul
+					li 3rd at Regionals
+				p 2011
+				ul
+					li 4th at Regionals
+			.col-md-4.col-sm-12
+				h2 TEAMS
+				p 2016
+				ul
+					li 3rd & 4th, State 9/10 Division
+					li 1st & 7th, State 11/12 Division
+				p 2015
+				ul
+					li 1st & 3rd, State 9/10 Division
+					li 2nd, 4th & 9th, State 11/12 Division
+				p 2014
+				ul
+					li 1st & 2nd, State 9/10 Division
+					li 2nd & 5th, State 11/12 Division
+				p 2013
+				ul
+					li 2nd & 3rd, State 9/10 Division
+					li 2nd & 3rd, State 11/12 Division
+				p 2012
+				ul
+					li 1st & 4th, State 9/10 Division
+					li 7th & 9th, State 11/12 Division
+				p 2011
+				ul
+					li 1st, State 9/10 Division
+					li 6th & 7th, State 11/12 Division
+					li 12th, National 9/10 Division
+		h1.title PEOPLE OF JETS
+		h2 Sponsors
+		.row
+			.col-md-4.col-sm-12
+				a(href='https://www.fortbendisd.com/Domain/3427').person-card
+					img(src='./dist/imgs/officers/Kinsey.png')
+					h3 Mark Kinsey
+					p AP Physics I and C
+			.col-md-4.col-sm-12
+				a(href='https://www.fortbendisd.com/Domain/3456').person-card
+					img(src='./dist/imgs/officers/Chan.webp')
+					h3 William Chan
+					p AP Environmental Science
+			.col-md-4.col-sm-12
+				a(href='https://www.fortbendisd.com/Domain/3489').person-card
+					img(src='./dist/imgs/officers/Brathwaite.jpg')
+					h3 Vicky Brathwaite
+					p AP Physics I, Pre-AP Biology
+		.row
+			.col-md-4.col-sm-12
+				a(href='https://www.fortbendisd.com/Domain/3499').person-card
+					img(src='./dist/imgs/officers/Hart.jpg')
+					h3 Geoffery Hart
+					p AP Physics I and II
+		h2(style='margin-top: 30px') Officers
+		.row
+			.col-md-4.col-sm-12.presidentA
+				a(href='https://www.facebook.com/profile.php?id=100007097624950&fref=mentions').person-card
+					img(src='./dist/imgs/officers/Mahija.jpg')
+					h3 Mahija Ginjupalli
+					p Co-President
+			.col-md-4.col-sm-12.president1
+				a(href='https://www.facebook.com/profile.php?id=100004994419015&fref=mentions').person-card
+					img(src='./dist/imgs/officers/Michelle.jpg')
+					h3 Michelle Zhu
+					p Co-President
+		.row
+			.col-md-4.col-sm-12
+				a(href='https://www.facebook.com/profile.php?id=100010775112941&fref=mentions').person-card
+					img(src='./dist/imgs/officers/Andy.jpg')
+					h3 Andy Xd
+					p Treasurer, Mentorship Coordinator
+			.col-md-4.col-sm-12
+				a(href='https://www.facebook.com/profile.php?id=100008401453082&fref=mentions').person-card
+					img(src='./dist/imgs/officers/Indhu.jpg')
+					h3 Indhu Gunda
+					p Secretary, Interscholastic Relations Manager
+			.col-md-4.col-sm-12
+				a(href='https://www.facebook.com/jenny.zhang.90410?fref=mentions').person-card
+					img(src='./dist/imgs/officers/Jenny.jpg')
+					h3 Jenny Zhang
+					p Outreach Director
+		.row
+			.col-md-4.col-sm-12
+				a(href='https://www.facebook.com/profile.php?id=100007981516161&fref=mentions').person-card
+					img(src='./dist/imgs/officers/Thomas.jpg')
+					h3 Thomas Kaldahl
+					p Building Coordinator, Webmaster, Parliamentarian
+			.col-md-4.col-sm-12
+				a(href='https://www.facebook.com/profile.php?id=100013480598356').person-card
+					img(src='./dist/imgs/officers/Arvind.jpg')
+					h3 Arvind Badri
+					p Historian, Building Assistant
+			.col-md-4.col-sm-12
+				a(href='https://www.facebook.com/ILuvWIDI').person-card
+					img(src='./dist/imgs/officers/Eric.jpg')
+					h3 Eric Mao
+					p Middle School Outreach Manager
+		.row
+			.col-md-4.col-sm-12
+				a(href='https://www.facebook.com/nithin.parsan?fref=mentions').person-card
+					img(src='./dist/imgs/officers/Nithin.jpg')
+					h3 Nithin Parsan
+					p Science Bowl Co-Coordinator and Liaison
+			.col-md-4.col-sm-12
+				a(href='https://www.facebook.com/profile.php?id=100010382229909&fref=mentions').person-card
+					img(src='./dist/imgs/officers/Sameer.jpg')
+					h3 Sameer Rajesh
+					p Science Bowl Co-Coordinator
+		script.
+			if(Math.random() > 0.5) {
+				$('.president1').insertBefore('.presidentA');
+			}
