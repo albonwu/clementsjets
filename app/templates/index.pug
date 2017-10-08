@@ -123,6 +123,14 @@ block content
 				animation-timing-function: ease-out, ease-in-out, ease-out;
 				animation-direction: normal, normal, reverse;
 			}
+			.col-text {
+				font-size: 1.25vw;
+			}
+			@media screen and (max-width: 992px) {
+				.col-text {
+					font-size: 5vw;
+				}
+			}
 	script.
 		$('#landing-container').hide().fadeIn(1000);
 		$('#triangle').fadeIn(500);
@@ -136,21 +144,21 @@ block content
 			Special thanks to:
 		.row
 			img(src='dist/imgs/sponsors/hirsch_westheimer.jpeg' style='width:100%')
-		.row(style='display:flex;align-items:center')
-			.col-md-3
+		.row(style='align-items:center')
+			.col-md-3.col-sm-12
 				img(src='dist/imgs/sponsors/raising-canes.png' style='width:100%')
-			.col-md-3(style='font-family:Montserrat;font-size:1.25vw;text-align:center').
+			.col-md-3.col-sm-12.col-text(style='font-family:Montserrat;text-align:center').
 				Dhruva Karkada #[br]
 				Kevin Chen #[br]
 				Angela Hwang #[br]
 				Saarang Panchavati #[br]
 				Varun Rajaram
-			.col-md-3(style='font-family:Montserrat; font-size:1.25vw;text-align:center').
+			.col-md-3.col-sm-12.col-text(style='font-family:Montserrat;text-align:center').
 				Michael Yu #[br]
 				Alan Baonan Ji #[br]
 				Claire Dong #[br]
 				Leon Yuan
-			.col-md-3
+			.col-md-3.col-sm-12
 				img(src='dist/imgs/sponsors/HGMS.png' style='width:100%')
 	.container.content-contianer(style='margin-top: 75px')
 		h1.title ABOUT US
