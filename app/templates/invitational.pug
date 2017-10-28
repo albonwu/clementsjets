@@ -177,7 +177,7 @@ block content
 								`);
 							} else if(result == 0) {
 								$('#getgoing').append(`
-									<p class='m'>Hi, ` + localStorage.getItem('name') + `! You're in the system; we just need to verify everything with you and make sure you are who you say you are. If you have any questions or concerns, contact us at jets.chs@gmail.com</p>
+									<p class='m'>Hi, ` + localStorage.getItem('name') + `! You're on the waitlist. If you have any questions or concerns, contact us at jets.chs@gmail.com</p>
 								`);
 							} else {
 								$('#getgoing').append(`
@@ -277,12 +277,9 @@ block content
 			script.
 				$('.block').hide();
 			h2 Attending Teams
-			p.m We thank everyone for a great turnout of signed up teams.
-			br
-			p.m There is currently no more room for Division B.
-			br
-			p.m There are only 2 slots remaining for Division C.
-			br
+			p.m We thank everyone for a great turnout of signed up teams. We are now 
+			p.m(stye='color:red') full, 
+			p.m but the registration system is staying up in case you wish to be put on our waitlist.
 			br
 			p.m#teamlist
 		div.block

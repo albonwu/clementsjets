@@ -8,23 +8,19 @@ head
 	link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
 	script.
 		function userAuth(callback) {
-			if(localStorage.getItem('user') != null) {
-				$.ajax({
-					url: "http://gaminged.com/ei1/jets/net/validate.php?usingemail=0&user="
-					+ localStorage.getItem('user')
-					+ '&pass='
-					+ localStorage.getItem('pass'),
-					success: function(result) {
-						if(parseInt(result) != NaN) {
-							callback(parseInt(result));
-						} else {
-							alert('Uh oh, I think a servo fried. Try again later.');
-						}
+			$.ajax({
+				url: "http://gaminged.com/ei1/jets/net/validate.php?usingemail=0&user="
+				+ localStorage.getItem('user')
+				+ '&pass='
+				+ localStorage.getItem('pass'),
+				success: function(result) {
+					if(parseInt(result) != NaN) {
+						callback(parseInt(result));
+					} else {
+						alert('Uh oh, something screwed up.');
 					}
-				});
-			} else {
-				callback(-1);
-			}
+				}
+			});
 		}
 
 		function logOut() {
