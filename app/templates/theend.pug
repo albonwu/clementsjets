@@ -1,0 +1,10 @@
+block content
+	.content-container.container
+		script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+		script.
+			var Yike = new Audio('./dist/audio/theend.m4a');
+			$(document).ready(function() {
+				$(document).click(function(event) {
+					Yike.play();
+				});
+			});

@@ -46,6 +46,7 @@ module.exports = function(app) {
 		'join',
 		'invitationaladmin',
 		'donate',
+		'theend',
 	];
 	standardLinks.forEach(function(url) {
 		if(typeof(url) == 'string') {
