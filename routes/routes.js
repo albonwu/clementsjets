@@ -47,6 +47,8 @@ module.exports = function(app) {
 		'invitationaladmin',
 		'donate',
 		'theend',
+		'esus',
+		'esusb',
 	];
 	standardLinks.forEach(function(url) {
 		if(typeof(url) == 'string') {

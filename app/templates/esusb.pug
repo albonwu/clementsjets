@@ -1,0 +1,350 @@
+extends _layout
+
+block content
+	title Event Signup
+	script.
+		userAuth(function(auth) {
+			if(auth != 1) {
+				window.location.href = 'invitational';
+			} else {
+				$.ajax({
+					url: 'http://gaminged.com/ei1/jets/esus/validateCaptain.php' +
+					'?user=' + localStorage.getItem('user') +
+					'&pass=' + localStorage.getItem('pass'),
+					success: function(data) {
+						if(data == -1 || data == 0) {
+							window.location.href = 'invitational';
+						}
+
+					}
+				});
+			}
+		});
+	style.
+		@keyframes not-yet {
+			0% {opacity: 0; transform: scale(0) rotate(0deg);}
+			70% {opacity: 1; transform: scale(1) rotate(0deg);}
+			80% {transform: scale(1) rotate(1deg);}
+			90% {transform: scale(1) rotate(-1deg);}
+			100% {transform: scale(1) rotate(-0deg);}
+		}
+		@keyframes darken {
+			0% {filter: blur(0px) opacity(100%);}
+			100% {filter: blur(10px) opacity(60%);}
+		}
+		body {
+			overflow: scroll;
+		}
+		.darkened {
+			animation-duration: 0.25s;
+			animation-timing-function: ease-in-out;
+			animation-delay: 0s;
+			animation-fill-mode: both;
+			animation-name: darken;
+		}
+		.popup {
+			border-radius: 16px;
+			border: 2px solid rgb(41, 128, 185);
+			padding: 2rem;
+			background-color: rgba(100, 200, 255, 0.5);
+			align-self: center;
+		}
+		.popping-up {
+			animation-duration: 0.75s;
+			animation-timing-function: ease-in-out;
+			animation-delay: 0s;
+			animation-fill-mode: both;
+			transform: scale(0) rotate(0deg);
+		}
+		.popup-container {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: fixed;
+			top: 25px;
+			left: 0;
+			width: 100%;
+			height: calc(100% - 25px);
+		}
+		.content-container {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		ul.events {
+			font-size: 2rem;
+			font-family: Roboto;
+		}
+		#connect-status {
+			bottom: 0;
+			right: 0;
+			position: fixed;
+			font: 3rem Roboto;
+			margin-bottom: 2rem;
+			margin-right: 2rem;
+			z-index: 2;
+			text-align: right;
+		}
+		table {
+			margin-top: 5vh;
+			margin-bottom: 10vh;
+		}
+		td {
+			font: 2rem Roboto;
+			text-align: center;
+			border: 3px solid rgb(236, 240, 241);
+			background-color: rgb(100, 200, 255);
+			color: rgb(10, 32, 50);
+			height: 10vh;
+			width: 10vw;
+		}
+		thead>tr>td {
+			background-color: rgb(52, 152, 219);
+			color: white;
+			font-family: Montserrat;
+			font-weight: 500;
+		}
+		.na {
+			background-color: rgb(50, 100, 128);
+			color: rgb(210, 235, 255);
+		}
+		.event:hover:not(.na) {
+			filter: brightness(130%);
+		}
+		.event.na {
+			background-color: rgb(0, 220, 110);
+		}
+		.gotten {
+			color: rgb(0, 50, 25);
+			background-color: rgb(0, 255, 128);
+		}
+	div#connect-status
+		<div style="color: red">NOT CONNECTED<i class="material-icons">error</i></div>
+	.content-container.darkened
+		table
+			thead
+				tr
+					td Event
+					td 8:00 - 8:50
+					td 9:00 - 9:50
+					td 10:00 - 10:50
+					td 11:00 - 11:50
+					td 12:00 - 12:50
+					td 1:00 - 1:50
+					td 2:00 - 2:50
+					td 3:00 - 3:50
+			tbody
+				tr
+					td Hovercraft
+					td.na Not Available
+					td.na Not Available
+					td.na Not Available
+					td#event1slot1.event
+					td#event1slot2.event
+					td.na Not Available
+					td#event1slot3.event
+					td#event1slot4.event
+				tr
+					td Wright Stuff
+					td#event2slot1.event
+					td#event2slot2.event
+					td#event2slot3.event
+					td#event2slot4.event
+					td#event2slot5.event
+					td#event2slot6.event
+					td#event2slot7.event
+					td#event2slot8.event
+				tr
+					td Towers
+					td#event3slot1.event
+					td#event3slot2.event
+					td#event3slot3.event
+					td#event3slot4.event
+					td#event3slot5.event
+					td#event3slot6.event
+					td#event3slot7.event
+					td#event3slot8.event
+				tr
+					td Roller Coaster
+					td#event4slot1.event
+					td#event4slot2.event
+					td#event4slot3.event
+					td#event4slot4.event
+					td#event4slot5.event
+					td#event4slot6.event
+					td#event4slot7.event
+					td#event4slot8.event
+				tr
+					td Helicopters
+					td#event5slot1.event
+					td#event5slot2.event
+					td#event5slot3.event
+					td#event5slot4.event
+					td#event5slot5.event
+					td#event5slot6.event
+					td#event5slot7.event
+					td#event5slot8.event
+	.popup-container
+		.popup.popping-up
+			h2 Welcome to Event Slot Signups!
+			p.
+				You're at the place where you are to reserve the time slots you want for your team. #[br]
+				The events that this is applicable for are:
+			ul.events
+				li Hovercraft (Just the build portion)
+				li Wright Stuff
+				li Towers
+				li Roller Coaster
+				li Battery Buggy
+			p.
+				The available slots for these events are visible on the #[a(href='https://docs.google.com/spreadsheets/d/1TbVWpEbjsuY_hC9_D-AiXheU1XMFPQPVMWb-Bb2AmCU/edit#gid=1783981957') competition schedule]#[br]
+				Signup is first come first serve. It starts December 1st at 6:00PM.
+			p(style='font-size:3rem; display:inline').
+				Signup begins in #[p(id='countdown' style='display:inline; font-size:5rem') NOT CONNECTED] #[p(style='display:inline; font-size:3rem') seconds.]
+	script.
+		var timeDiff = null;
+		var connections = 0;
+		var timeUntil = 0;
+		var activated = false;
+
+		function checkConnection() {
+			$('#connect-status').prepend('<div style="color:#ff8000">CONNECTING...<i class="material-icons">error</i></div>');
+			$.ajax({
+				url: 'http://gaminged.com/ei1/jets/esus/getTime.php',
+				success: function(data) {
+					if(data.slice(0, 3) == 'yay') {
+						$('#connect-status').html('<div style="color: green">CONNECTED<i class="material-icons">check_circle</i></div>');
+						if(connections < 2)
+							connections++;
+						timeDiff = ((connections - 1) / connections * timeDiff) + (data.slice(3) - Date.now()) / connections;
+						timeUntil = (1512172800000 - Date.now() + timeDiff) / 1000;
+						if(timeUntil > 0) {
+							$('.content-container').css('animation-name', 'darken');
+							$('.popup').css('animation-name', 'not-yet');
+						}
+					} else {
+						$('#connect-status').html('<div style="color: red">NOT CONNECTED<i class="material-icons">error</i></div>');
+					}
+				},
+				error: function() {
+					$('#connect-status').html('<div style="color: red">NOT CONNECTED<i class="material-icons">error</i></div>');
+				}
+			});
+			$.ajax({
+				url: 'http://gaminged.com/ei1/jets/esus/getStatusB.php?user=' + localStorage.getItem('user'),
+				success: function(data) {
+					if(data[0] == '[') {
+						var tableStatus = eval(data);
+						for(var event = 0; event < tableStatus.length; event++) {
+							for(var slot = 0; slot < tableStatus[event].length; slot++) {
+								if(parseInt(tableStatus[event][slot].slice(-3).split('/')[0]) >= parseInt(tableStatus[event][slot].slice(-3).split('/')[1])) {
+									$('#event' + (event + 1) + 'slot' + (slot + 1)).attr('class', 'na');
+									$('#event' + (event + 1) + 'slot' + (slot + 1)).text('Full');
+								} else {
+									$('#event' + (event + 1) + 'slot' + (slot + 1)).attr('class', 'event');
+									$('#event' + (event + 1) + 'slot' + (slot + 1)).html(tableStatus[event][slot]);
+								}
+								if(tableStatus[event][slot].indexOf('<i class=\'material-icons\'>check_circle</i>') != -1) {
+									$('#event' + (event + 1) + 'slot' + (slot + 1)).addClass('event gotten');
+									$('#event' + (event + 1) + 'slot' + (slot + 1)).html(tableStatus[event][slot]);
+								}
+							} 
+						}
+					} else {
+						alert(data);
+					}
+				}
+			});
+		}
+		checkConnection();
+		setInterval(checkConnection, 2500);
+		var checkIfOpen = setInterval(function() {
+			timeUntil = (1512172800000 - Date.now() - timeDiff) / 1000;
+			$('#countdown').text(timeUntil.toFixed(1));
+			if(timeUntil <= 0) {
+				$('.content-container').removeClass('darkened');
+				$('.popup').hide().removeClass('popping-up');
+				$('.popup-container').hide();
+				clearInterval(checkIfOpen);
+			} else {
+				$('.content-container').addClass('darkened');
+				$('.popup').show().addClass('popping-up');
+				$('.popup-container').show();
+			}
+		}, 100);
+
+		function requestSlot(slot, team) {
+			$.ajax({
+				url: 'http://gaminged.com/ei1/jets/esus/slotRequestB.php'
+					+ '?user=' + localStorage.getItem('user')
+					+ '&pass=' + localStorage.getItem('pass')
+					+ '&slot=' + slot
+					+ '&team=' + team,
+				success: function(data) {
+					if(data == 'yay') {
+						//window.location.reload();
+						$('.content-container').removeClass('darkened');
+						$('.popup').hide().removeClass('popping-up');
+						$('.popup-container').hide();
+						checkConnection();
+					} else {
+						alert(data);
+					}
+				},
+				error: function() {
+					alert('Error, Try again.');
+				}
+			})
+		}
+		$(document).ready(function() {
+			var thisId = String($(this).attr('id'));
+			$('.event').click(function() {
+				if(!$(this).hasClass('na')) {
+					var eventClick = $(this).parent().index();
+					var slotClick = $(this).index() - 1;
+					thisId = String($(this).attr('id'));
+					$('.popup-container').show();
+					$('.popup').show().html(
+						'<h3>Reserving '
+						+ [
+							'Hovercraft',
+							'Wright Stuff',
+							'Towers',
+							'Roller Coaster',
+							'Battery Buggy'
+						][eventClick]
+						+ ' from '
+						+ [
+							'8:00 to 8:50',
+							'9:00 to 9:50',
+							'10:00 to 10:50',
+							'11:00 to 11:50',
+							'12:00 to 12:50',
+							'1:00 to 1:50',
+							'2:00 to 2:50',
+							'3:00 to 3:50',
+						][slotClick]
+						+ '.<br>For which team?</h3><input onclick="$(\'.content-container\').removeClass(\'darkened\');$(\'.popup\').hide().removeClass(\'popping-up\');$(\'.popup-container\').hide();" class="btn" type="button" value="Cancel">'
+					).addClass('popping-up');
+					$.ajax({
+						url: 'http://gaminged.com/ei1/jets/esus/requestInfo.php'
+						+ '?user=' + localStorage.getItem('user')
+						+ '&pass=' + localStorage.getItem('pass'),
+						success: function(data) {
+							for(var i = 0; i < parseInt(data.split(';')[1]); i++) {
+								$('.popup').append(
+									'<input onclick="requestSlot(\''
+									+ thisId
+									+ '\','
+									+ i
+									+ ')" class="btn" type="button" value="Team '
+									+ ['A', 'B', 'C'][i]
+									+ '">'
+								);
+							}
+						}
+					});
+					$('.popup').css('background-color', 'white');
+				}
+			});
+		});
