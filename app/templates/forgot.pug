@@ -1,0 +1,76 @@
+extends _layout
+
+block content
+	.content-container.container
+		title Forgotten Password Recovery
+		style.
+			body {
+				margin: 0;
+			}
+			#holder {
+				position: absolute;
+				width: 50vh;
+				height: 50vh;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				padding: 1%;
+			}
+			.field {
+				width: 100%;
+				height: 10%;
+				font-size: 2.5vh;
+			}
+			.btn {
+				width: calc(50% - 0.5rem);
+				height: 10%;
+				margin-top: 5%;
+				margin-bottom: 5%;
+			}
+			a {
+				color: inherit;
+			}
+			#error {
+				color: red;
+				white-space: pre;
+			}
+		script.
+			$(document).ready(function() {
+				function submit() {
+					$('#error').text('');
+					if($('#pass').val() != $('#confirmpass').val()) {
+						$('#error').text('Passwords do not match');
+					} else {
+						$.ajax({
+							url:  "http://gaminged.com/ei1/jets/net/passReq.php" +
+							'?user=' + $('#user').val() +
+							'&pass=' + $('#pass').val() + 
+							'&key=' + window.location.href.split('?key=')[1],
+							success: function(result) {
+								if(result != "yay") {
+									$('#error').text(result);
+								} else {
+									localStorage.setItem('pass', $('#pass').val());
+									window.location.href = '../';
+								}
+							}
+						})
+					}
+				}
+				$('#submit').click(submit);
+				$(document).keypress(function(e) {
+					if(e.which == 13) {
+						submit();
+					}
+				})
+			});
+		div#holder
+			h1(style='text-align:center')#login-title Password Recovery
+			h4 Username
+			input(type='text').field.form-control#user
+			h4 Enter new password
+			input(type='password').field.form-control#pass
+			h4 Again
+			input(type='password').field.form-control#confirmpass
+			p(style='font-size: 2vh;')#error
+			input(type='button' value='Submit').btn.btn-primary#submit

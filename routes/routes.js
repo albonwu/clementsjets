@@ -49,6 +49,7 @@ module.exports = function(app) {
 		'theend',
 		'esus',
 		'esusb',
+		'forgot',
 	];
 	standardLinks.forEach(function(url) {
 		if(typeof(url) == 'string') {
