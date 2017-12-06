@@ -59,7 +59,7 @@ block content
 		function check() {
 			var list = '';
 			$.get('http://gaminged.com/ei1/jets/net/request.php?req=invite-teams&refresh=' + Math.random(), function(data) {
-				$('#teamlist').html(data);
+				$('#teamlist').html(data.replace('TEST (1 team, Division B and C)<br>', ''));
 			});
 		}
 
