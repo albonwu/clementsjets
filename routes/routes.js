@@ -50,6 +50,7 @@ module.exports = function(app) {
 		'esus',
 		'esusb',
 		'forgot',
+		'widiTimer',
 	];
 	standardLinks.forEach(function(url) {
 		if(typeof(url) == 'string') {

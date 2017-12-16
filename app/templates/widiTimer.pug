@@ -1,0 +1,58 @@
+extends _layout
+
+block content
+	.content-container.container
+		style.
+			#countdown {
+				font-family: Roboto;
+				font-size: 20rem;
+			}
+		#countdown
+		script.
+			var timeDiff = null;
+			var connections = 0;
+			var timeUntil = 0;
+			var activated = false;
+			var stop = 0;
+
+			function checkConnection() {
+				$('#connect-status').prepend('<div style="color:#ff8000">CONNECTING...<i class="material-icons">error</i></div>');
+				$.ajax({
+					url: 'http://gaminged.com/ei1/jets/widi/stop.txt',
+					success: function(stopTime) {
+						stop = parseInt(stopTime) + 1505000;
+						$.ajax({
+							url: 'http://gaminged.com/ei1/jets/esus/getTime.php',
+							success: function(data) {
+								if(connections < 2)
+									connections++;
+								timeDiff = ((connections - 1) / connections * timeDiff) + (data.slice(3) - Date.now()) / connections;
+								timeUntil = (stop - Date.now() + timeDiff) / 1000;
+							},
+						});
+					}
+				})
+			}
+			checkConnection();
+			setInterval(checkConnection, 2500);
+			var checkIfOpen = setInterval(function() {
+				timeUntil = (stop - Date.now() - timeDiff) / 1000;
+				console.log(timeUntil);
+				if(timeUntil <= 0) {
+					$('.content-container').css('background-color', 'red');
+					$('#countdown').text('PENCILS DOWN');
+				} else {
+					if(timeUntil <= 1500) {
+						$('#countdown').text(
+							Math.floor(timeUntil / 60) + 'min ' +
+							(timeUntil % 60).toFixed(1)  + 'sec'
+						);
+						$('.content-container').css('background-color', 'initial');
+					} else {
+						$('#countdown').text(
+							(timeUntil % 60).toFixed(1)
+						);
+						$('.content-container').css('background-color', 'initial');
+					}
+				}
+			}, 100);
