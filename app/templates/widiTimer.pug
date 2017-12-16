@@ -18,12 +18,12 @@ block content
 			function checkConnection() {
 				$('#connect-status').prepend('<div style="color:#ff8000">CONNECTING...<i class="material-icons">error</i></div>');
 				$.ajax({
-					url: 'http://gaminged.com/ei1/jets/widi/stop.txt',
+					url: 'http://gaminged.com/ei1/jets/widi/stop.txt?updater=' + Math.random(),
 					success: function(stopTime) {
 						if(stopTime != 'n') {
 							stop = parseInt(stopTime) + 1505000;
 							$.ajax({
-								url: 'http://gaminged.com/ei1/jets/esus/getTime.php',
+								url: 'http://gaminged.com/ei1/jets/esus/getTime.php?updater=' + Math.random(),
 								success: function(data) {
 									if(connections < 2)
 										connections++;
