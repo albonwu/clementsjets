@@ -1,7 +1,5 @@
 const gulp = require('gulp')
-const browserSync = require('browser-sync')
 const sass = require('gulp-sass')
-const reload = browserSync.reload
 const pug = require('gulp-pug')
 const autoprefix = require('gulp-autoprefixer')
 const cssmin = require('gulp-cssmin')
@@ -10,7 +8,7 @@ const rename = require('gulp-rename')
 const imagemin = require('gulp-imagemin')
 const jsmin = require('gulp-jsmin')
 const cache = require('gulp-cache')
-const spawn = require('child_process')
+const livereload = require('gulp-livereload')
 
 gulp.task('templates', function() {
 	const YOUR_LOCALS = {}
@@ -23,6 +21,7 @@ gulp.task('templates', function() {
 				return !/\/_/.test(file.path) && !/^_/.test(file.relative)
 			})
 		)
+		.pipe(livereload())
 		.pipe(gulp.dest('./'))
 })
 
@@ -30,6 +29,7 @@ gulp.task('imgs', function() {
 	return gulp
 		.src('./app/imgs/**/*')
 		.pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
+		.pipe(livereload())
 		.pipe(gulp.dest('./dist/imgs'))
 })
 
@@ -41,17 +41,17 @@ gulp.task('setWatch', function() {
 	global.isWatching = true
 })
 
-gulp.task('pug-watch', ['templates'], reload)
+gulp.task('pug-watch', ['templates'])
 
-gulp.task('sass', function() {
+gulp.task('scss', function() {
 	return gulp
 		.src('./app/scss/*.scss')
-		.pipe(sass().on('error', sass.logError))
+		.pipe(sass({ style: 'expanded' }).on('error', sass.logError))
 		.pipe(autoprefix())
 		.pipe(cssmin())
 		.pipe(rename({ suffix: '.min' }))
+		.pipe(livereload())
 		.pipe(gulp.dest('./dist/css'))
-		.pipe(reload({ stream: true }))
 })
 
 gulp.task('js', function() {
@@ -59,24 +59,43 @@ gulp.task('js', function() {
 		.src('./app/js/*.js')
 		.pipe(jsmin())
 		.pipe(rename({ suffix: '.min' }))
+		.pipe(livereload())
 		.pipe(gulp.dest('./dist/js'))
-		.pipe(reload({ stream: true }))
 })
 
 gulp.task('data', function() {
 	return gulp
 		.src('./app/data/*.txt')
+		.pipe(livereload())
 		.pipe(gulp.dest('./dist/data'))
-		.pipe(reload({ stream: true }))
 })
 
-gulp.task('watch', ['sass', 'js', 'imgs', 'fonts', 'data'], function() {
-	// browserSync({server: './', notify: false});
+gulp.task('watch', ['scss', 'js', 'imgs'], function() {
+	livereload.listen()
 
-	gulp.watch('./app/imgs/**/*', ['imgs'])
-	gulp.watch('./app/scss/*.scss', ['sass'])
-	gulp.watch('./app/js/*.js', ['js'])
-	gulp.watch('./app/data/*.txt', ['data'])
+	// Watch template files
+	gulp.watch('./app/views/**/*.pug', event => {
+		console.log('File ' + event.path + ' was ' + event.type + ', running tasks...')
+		gulp.run('templates')
+	})
+
+	// Watch .scss files
+	gulp.watch('./app/scss/**/*.scss', event => {
+		console.log('File ' + event.path + ' was ' + event.type + ', running tasks...')
+		gulp.run('scss')
+	})
+
+	// Watch .js files
+	gulp.watch('./app/js/**/*.js', event => {
+		console.log('File ' + event.path + ' was ' + event.type + ', running tasks...')
+		gulp.run('js')
+	})
+
+	// Watch image files
+	gulp.watch('./app/imgs/**/*', event => {
+		console.log('File ' + event.path + ' was ' + event.type + ', running tasks...')
+		gulp.run('imgs')
+	})
 })
 
-gulp.task('build', ['sass', 'js', 'imgs', 'fonts', 'data'])
+gulp.task('build', ['scss', 'js', 'imgs', 'fonts', 'data'])
