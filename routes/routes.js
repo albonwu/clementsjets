@@ -1,29 +1,17 @@
 module.exports = function(app) {
-	var bodyParser = require('body-parser');
-	app.use(bodyParser.json());
-	app.use(bodyParser.urlencoded({ extended: true }));
+	var bodyParser = require('body-parser')
+	app.use(bodyParser.json())
+	app.use(bodyParser.urlencoded({ extended: true }))
 
-	var bcrypt = require('bcryptjs');
-	var secret;
-	try {
-		secret = require('../secret.json');
-	}
-	catch (e) {
-		console.log('local secret not found');
-	}
-
-	var hash = process.env.HASH || secret.hash;
-
-	var links;
-	if(process.env.DROPBOX){
+	var links
+	if (process.env.DROPBOX) {
 		links = {
-			"dropbox": process.env.DROPBOX,
-			"testLinkArchives": process.env.TEST_LINK_ARCHIVES,
-			"eventPrepSheet": process.env.EVENT_PREP_SHEET
+			dropbox: process.env.DROPBOX,
+			testLinkArchives: process.env.TEST_LINK_ARCHIVES,
+			eventPrepSheet: process.env.EVENT_PREP_SHEET
 		}
-	}
-	else {
-		links = secret.links;
+	} else {
+		links = secret.links
 	}
 
 	standardLinks = [
@@ -50,17 +38,17 @@ module.exports = function(app) {
 		'esus',
 		'esusb',
 		'forgot',
-		'widiTimer',
-	];
+		'widiTimer'
+	]
 	standardLinks.forEach(function(url) {
-		if(typeof(url) == 'string') {
+		if (typeof url == 'string') {
 			app.get('/' + url, function(req, res) {
-				res.render(url);
-			});
+				res.render(url)
+			})
 		} else {
 			app.get('/' + url[0], function(req, res) {
-				res.render(url[1]);
-			});
+				res.render(url[1])
+			})
 		}
-	});
+	})
 }
