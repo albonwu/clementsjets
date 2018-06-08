@@ -1,6 +1,13 @@
 # Website for Clements JETS
 
 #### Development Setup
+0. Create a file called ```.env``` in the root of your project folder. Copy paste the below content in:
+```
+    DROPBOX=https://www.dropbox.com/sh/cz2yv2klsv091d3/AACPRZYFUfpraGmWG5UOhJ03a?dl=0
+    EVENT_PREP_SHEET=https://docs.google.com/document/d/1yDZ1M3Qo9NWpTo1zSc2EMrBzNgeANkrRYmFZLkexRfM/edit?usp=sharing
+    HASH=$2a$08$mQhW0utHaDYytF6ebu3Ie.7UcjejYZIs7hLQAlVGhiG48EIvmaYbu
+    TEST_LINK_ARCHIVES=https://drive.google.com/open?id=0BxJxeYCvliIBRklENWxySWhqcUk
+```
 1. Install build tools
 ```
     npm i -g gulp
