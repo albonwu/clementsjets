@@ -11,7 +11,7 @@ module.exports = function(app) {
 			eventPrepSheet: process.env.EVENT_PREP_SHEET
 		}
 	} else {
-		links = secret.links
+		//links = secret.links
 	}
 
 	standardLinks = [

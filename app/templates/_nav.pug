@@ -100,9 +100,10 @@ nav
 	ul#actionlist(style='position:absolute;left:0px')
 		li#logo
 			a(href="/") CLEMENTS JETS
+		+menuItem("/about","ABOUT")
 		+menuItem("/updates","UPDATES")
 		+menuItem("/donate", "DONATE")
-		+menuItem("/invitational", "INVITATIONAL")
+		//+menuItem("/invitational", "INVITATIONAL")
 		script.
 			if(localStorage.getItem('extraItems') != null) {
 				$('#actionlist').append(localStorage.getItem('extraItems'));
