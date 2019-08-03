@@ -13,7 +13,10 @@ block content
 						'&pass=' + localStorage.getItem('pass') +
 						'&req=calendar',
 						success: function(result) {
-							$('.content-container').append(result);
+							console.log(result);
+							var calendar = `<h1 class="title">CALENDAR</h1>
+							<iframe src="https://calendar.google.com/calendar/embed?height=800&amp;wkst=1&amp;bgcolor=%23B39DDB&amp;ctz=America%2FChicago&amp;src=b3UwYW4wdXVvdmU4bG0zaTdmaHQzcW8wMmtAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;color=%238E24AA" style="border-width:0" width="1200" height="650" frameborder="0" scrolling="no"></iframe>`;
+							$('.content-container').append(calendar);
 						}
 					});
 				}
