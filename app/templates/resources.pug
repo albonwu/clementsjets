@@ -15,10 +15,38 @@ block content
 						'&pass=' + localStorage.getItem('pass') +
 						'&req=resources',
 						success: function(result) {
-							$('.content-container').append(result);
+							console.log(result);
+							var out = `<title>JETS Resources</title>
+									<h1 class="title">RESOURCES</h1>
+									<h2>Draft rules out for the 2019-2020 Science Olympiad competition season!<br><br></h2>
+									<div class="row">
+										<div class="col-md-6 col-sm-12">
+											<h2>Science Olympiad</h2>
+											<ul>
+												<li><a href="https://drive.google.com/drive/folders/1cEESQnjA9HfOpUzLCDQTfRbJRBluY3tq?usp=sharing" target="_">UPDATED Division C Rulebook (2019-2020)</a></li>
+												<li><a href="https://docs.google.com/document/d/11IiQwLvVMtB7nQIykel_5TatMGZXw8pwSzIDOb6di9U/edit?usp=sharing" target="_">Test Link Archives</a></li>
+												<li><a href="https://www.dropbox.com/sh/cz2yv2klsv091d3/AACPRZYFUfpraGmWG5UOhJ03a?dl=0" target="_">Clements Science Olympiad Dropbox</a></li>
+												<li><a href="https://drive.google.com/open?id=0ByzrlFZ8QKqlLVBVVnBoU2ljekU" target="_">Clements Science Olympiad Google Drive</a></li>
+												<li><a href="https://docs.google.com/document/d/1izsYl3YhNB3PjN7ZMXmDiRlzbAZ9SweaDErcuh_bsZQ/edit?usp=sharing" target="_">Event Preparation Sheet</a></li>	
+												<li><a href="http://www.soinc.org/" target="_">Science Olympiad Website (soinc.org)</a></li>
+												<li><a href="http://outreach.science.tamu.edu/scienceolympiad.php" target="_">Texas Science Olympiad Website</a></li>
+												<li><a href="https://www.soinc.org/events/2018-division-c-events" target="_">2018-2019 National Science Olympiad Events</a></li>
+												<li><a href="http://www.scioly.org/phpBB3/index.php" target="_">Science Olympiad Student Center (scioly.org)</a></li>
+											</ul>
+										</div>
+										<div class="col-md-6 col-sm-12">
+											<h2>Science Bowl</h2>
+											<ul>
+											<li><a href="https://science.osti.gov/wdts/nsb/Regional-Competitions/Resources/HS-Sample-Questions" target="_">High School Sample Questions</a></li>
+											<li><a href="http://science.energy.gov/wdts/nsb/" target="_">Science Bowl Website</a></li>
+											<li><a href="http://outreach.science.tamu.edu/sciencebowl.php" target="_">Texas A&amp;M Regional Science Bowl Website</a></li>
+											</ul>
+										</div>
+									</div>`;
+							$('.content-container').append(out);						
 						}
 					});
 				}
 			});
 		br
-		p #[a(href='https://drive.google.com/open?id=1szrbpuGP8RE-NPKt7U7Qqoe3vGfX-UfT') 2019 Division C Rules]
+		//p #[a(href='https://drive.google.com/open?id=1szrbpuGP8RE-NPKt7U7Qqoe3vGfX-UfT') 2019 Division C Rules]
