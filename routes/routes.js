@@ -20,6 +20,7 @@ module.exports = function(app) {
 		'updates',
 		'resources',
 		'calendar',
+		'clubnight',
 		'gene',
 		[
 			'ha-ha-ha-now-you-will-have-to-type-in-this-really-long-url-to-access-the-secret-game-of-four-dimensinoal-tic-tac-toe-ha-ha-ha',
