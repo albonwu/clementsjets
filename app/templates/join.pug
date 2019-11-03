@@ -2,8 +2,41 @@ extends _layout
 
 block content
 	.content-container.container
-		title Club Night
-		h1.title CLUB NIGHT
-			script.
-				var form = '<p align="center"> <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeIBDxVCKgrzvaOmTiZgQp-6prCet-_NOJUE6zdggXooRjTJA/viewform?embedded=true" width="640" height="1692" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe> </p>';
-				$('.content-container').append(form);
+		script.
+			$('html > head').append('<style>.block{display:none}</style>');
+			var total = 3;
+			var directory = 'dist/imgs/join/#.jpg';
+		title Join JETS!
+		h1.block.title Join Clements JETS!
+		include _slideshow
+		script.
+			$('.slideshow').addClass('block');
+			$('.slideshow').css('height', '30vw');
+		p(style='font-size:2.5rem').block.
+			Hi! #[br]
+			This is Clements JETS. #[br]
+			We're a bunch of people that like science and technology! #[br]
+			If you join us, you could get to:
+		ul(style='font-size:2.5rem').block
+			li Explore areas like biology, chemistry, physics, and earth/space sciences
+			li Build and design structures and electronic machines
+			li Participate in
+				ul 
+					li National Science Olympiad (6th place at nationals!)
+					li National Science Bowl (3rd place!)
+					li And more!
+			li Come with us on overnight trips to places like University of Pennsylvania and Massachusetts Institute of Technology
+		p(style='font-size:2.5rem').block.
+			The first meeting is on Tuesday September 26 in the #[b Upstairs] Lecture Hall.
+		a(href='https://docs.google.com/forms/d/e/1FAIpQLSfm4B1OOa9hqzKep1NIwU-H5XQpE0JmIvJKg6tqm8wi9D5Y_w/viewform')
+			input.btn.btn-primary(style='font-size:2rem;padding:1.5rem' type='button' value='Click here if you\'re interested!').block
+		script.
+			function animateIn(i) {
+				$('.block:eq(' + i + ')').fadeIn(500);
+				$('.block:eq(' + i + ')').css({'transition' : 'transform 0.5s ease-in-out'});
+				$('.block:eq(' + i + ')').css({'transform' : 'translate(0, 0px)'});
+			}
+			$('.block').css({'transform' : 'translate(0, 100px)'});
+			for(var i = 0; i < $('.block').length; i++) {
+				setTimeout(animateIn.bind(null, i), i * 70);
+			}
