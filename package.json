@@ -1,6 +1,10 @@
 {
   "name": "chsjets",
   "version": "1.0.0",
+  "engines": {
+    "node": ">=13.0.0",
+    "npm": ">=5.0.0"
+  },
   "description": "Website of CHS JETS",
   "main": "index.js",
   "scripts": {
@@ -31,10 +35,6 @@
     "bcryptjs": "^2.3.0",
     "body-parser": "^1.18.3",
     "express": "^4.17.1",
-    "engines": {
-      "node": ">=13.0.0",
-      "npm": ">=5.0.0"
-    },
     "natives": "^1.1.6",
     "normalize.scss": "^0.1.0",
     "pug": "^2.0.0-beta6",
