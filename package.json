@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "engines": {
     "node": "16.15.1",
-    "npm": "8.11.0"
+    "npm": "8.12.2"
   },
   "description": "Website of CHS JETS",
   "main": "index.js",
@@ -15,20 +15,7 @@
   "author": "Jorm",
   "license": "ISC",
   "devDependencies": {
-    "browser-sync": "^2.26.7",
     "dotenv": "^6.0.0",
-    "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^5.0.0",
-    "gulp-cache": "^1.0.2",
-    "gulp-cssmin": "^0.2.0",
-    "gulp-filter": "^5.0.0",
-    "gulp-imagemin": "^4.1.0",
-    "gulp-jsmin": "^0.1.5",
-    "gulp-livereload": "^3.8.1",
-    "gulp-pug": "^4.0.1",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "^4.0.1",
-    "imagemin": "^5.3.1",
     "morgan": "^1.9.1"
   },
   "dependencies": {
@@ -37,7 +24,7 @@
     "express": "^4.17.1",
     "natives": "^1.1.6",
     "normalize.scss": "^0.1.0",
-    "pug": "^2.0.0-beta6",
+    "pug": "^3.0.2",
     "serve-favicon": "^2.4.3"
   }
 }
